@@ -1,6 +1,7 @@
 /* Make HTML and body content viewable, layout to fill window */
 .text-center {
-  text-align: center !important;
+  text-align: center;
+  width: 100%;
 }
 
 html,
