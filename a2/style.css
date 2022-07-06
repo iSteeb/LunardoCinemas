@@ -26,6 +26,24 @@ h3 {
 
 p {
   font-family: 'Gruppo', sans-seri;
+  color: white;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.card-template {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2.5%;
+  border: 1px solid #d1b800;
+  border-radius: clamp(0.5em, 1vw, 0.5vh);
+  margin: clamp(0.5em, 1vw, 0.5vh);
 }
 
 /* HEADER STYLES */
@@ -88,45 +106,26 @@ nav a {
 }
 
 /* SEAT SECTION STYLES */
-#seat-cards {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-}
+/* todo: need to fix this so that it collapses to one row in small displays */
 
 .seat-card {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
   width: clamp(280px, 20vw, 25vw);
-  padding: 2.5%;
-  border: 1px solid #d1b800;
-  border-radius: clamp(0.5em, 1vw, 0.5vh);
-  margin: clamp(0.5em, 1vw, 0.5vh);
 }
 
 .seat-card img {
   width: 80%;
 }
 
-/* FOOTER STYLES */
-#footer-cards {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+/* MOVIE SECTION STYLES */
+/* todo: need to fix this a lot */
+
+.movie-card {
+  width: clamp(280px, 20vw, 25vw);
 }
 
-.footer-contact-card {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+/* FOOTER STYLES */
+.contact-card {
   width: clamp(280px, 20vw, 25vw);
-  padding: 2.5%;
-  border: 1px solid #d1b800;
-  border-radius: clamp(0.5em, 1vw, 0.5vh);
-  margin: clamp(0.5em, 1vw, 0.5vh);
 }
 
 #footer-copyright {
@@ -140,7 +139,7 @@ nav a {
   font-size: 0.75em;
 }
 
-/* Tiny screens (unreasonably small, don't show title, force contact cards width, force column nav bar) */
+/* Tiny (unreasonably small, failsafe style) screens (don't show title, force full-width cards and navbar */
 @media only screen and (max-width: 318px) {
   #logo {
     margin-left: auto;
@@ -153,7 +152,9 @@ nav a {
     display: none;
   }
 
-  .footer-contact-card {
+  .contact-card,
+  .seat-card,
+  .movie-card {
     width: 90%;
   }
 
@@ -170,7 +171,25 @@ nav a {
 
 /* Screens small enough to require a column footer card layout */
 @media only screen and (max-width: 700px) {
-  #footer-cards {
+  #contact-cards {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+}
+
+/* Screens small enough to require a column seat card layout */
+/* TODO: this */
+@media only screen and (max-width: 700px) {
+  #seat-cards {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+}
+
+/* Screens small enough to require a column movie card layout */
+/* TODO: this */
+@media only screen and (max-width: 700px) {
+  #movie-cards {
     flex-flow: column nowrap;
     align-items: center;
   }

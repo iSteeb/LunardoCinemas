@@ -40,15 +40,15 @@ This area should tell customers these things:<br>
         <h2>seats</h2>
         <input id='show-discounted-prices-checkbox' type="checkbox" name="show-discounted-prices-checkbox" checked/>
         <label for='show-discounted-prices-checkbox'>Show discounted prices</label>
-        <div id="seat-cards">
-          <div id="standard-seating" class="seat-card">
+        <div id="seat-cards" class="card-container">
+          <div id="standard-seating" class="seat-card card-template">
             <img src="../../media/Profern-Standard-Twin.png" alt="Image of standard seating option (Profern Standard Twin)" />
             <p id="STA"></p>
             <p id="STP"></p>
             <p id="STC"></p>
           </div>
 
-          <div id="first-class-seating" class="seat-card">
+          <div id="first-class-seating" class="seat-card card-template">
             <img src="../../media/Profern-Verona-Twin.png" alt="Image of first class seating option (Profern Verona Twin)" />
             <p id="FCA"></p>
             <p id="FCP"></p>
@@ -59,6 +59,25 @@ This area should tell customers these things:<br>
 
       <section id="showing">
         <h2>showing</h2>
+        <div id="movie-cards" class="card-container">
+          <div id="movie-ACT" class="movie-card card-template">
+            <p>movie info here</p>
+          </div>
+
+          <div id="movie-RMC" class="movie-card card-template">
+            <p>movie info here</p>
+          </div>
+
+          <div id="movie-FAM" class="movie-card card-template">
+            <p>movie info here</p>
+
+          </div>
+
+          <div id="movie-AHF" class="movie-card card-template">
+            <p>movie info here</p>
+
+          </div>
+        </div>
         <p>This area should have 4 panels that shows details for each movie. These panels will have a "front" and a "back" side which will show different information (details below) and a "flip" effect should be triggered with a :focus pseudo state (and an optional :hover state if you wish).<br>
 * On the front: a movie poster, along with the name of the movie and the rating (eg PG, MA, R etc.). Tip: It will help if the poster images are all the same height and width as each other.<br>
 * On the back: a short synopsis of the movie plot should be show along with a list of day / times that the movie is playing, and a "book now" hyperlink which should be styled to look like a button. This link should take the user to a booking.php page along with a GET header containing the movie id, eg the action movie link should direct the user to "booking.php?movie=ACT". Tip: This url can be hard coded, but in the next assignment you are expected to create module code to generate these panels.<br>
@@ -78,10 +97,10 @@ Prithviraj	AHF	6pm	-	9pm	https://www.imdb.com/title/tt9637132 (Links to an exter
     </main>
 
     <footer>
-      <div id="footer-cards">
-        <div class="footer-contact-card">Email:<br>enquiries@lunardo.com.au</div>
-        <div class="footer-contact-card">Phone:<br>(02) 6174 4290</div>
-        <div class="footer-contact-card">Address:<br>30/33 Hibberson St, Gungahlin</div>
+      <div id="contact-cards" class="card-container">
+        <div class="contact-card card-template"><p>Email:<br>enquiries@lunardo.com.au</p></div>
+        <div class="contact-card card-template"><p>Phone:<br>(02) 6174 4290</p></div>
+        <div class="contact-card card-template"><p>Address:<br>30/33 Hibberson St, Gungahlin</p></div>
       </div>
       <div id="footer-copyright">
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Steven Duzevich (s3963525) | Last modified <?= date ("Y F d  H:i", filemtime($_SERVER["SCRIPT_FILENAME"])); ?> | <a href="//github.com/isteeb/wp" target="_blank">GitHub Repo</a></p>
