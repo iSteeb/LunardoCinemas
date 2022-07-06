@@ -87,6 +87,29 @@ nav a {
   min-height: calc(100vh - var(--nav-bar-height));
 }
 
+/* SEAT SECTION STYLES */
+#seat-cards {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.seat-card {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: clamp(280px, 20vw, 25vw);
+  padding: 2.5%;
+  border: 1px solid #d1b800;
+  border-radius: clamp(0.5em, 1vw, 0.5vh);
+  margin: clamp(0.5em, 1vw, 0.5vh);
+}
+
+.seat-card img {
+  width: 80%;
+}
+
 /* FOOTER STYLES */
 #footer-cards {
   display: flex;

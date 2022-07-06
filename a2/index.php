@@ -9,16 +9,6 @@
     <link id="wireframecss" type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
     <link id='stylecss' type="text/css" rel="stylesheet" href="style.css?t=<?= filemtime("style.css"); ?>">
     <script src="../wireframe.js"></script>
-    <script>
-      document.addEventListener('scroll', function(e){
-        if (window.scrollY > document.getElementById("about").offsetTop) {
-          document.getElementById("go-to-top-button").style.display = "block";
-        } else {
-          document.getElementById("go-to-top-button").style.display = "none";
-        }
-
-      }, true);
-    </script>
   </head>
 
   <body>
@@ -44,20 +34,31 @@ This area should tell customers these things:<br>
 * The projection and sound systems are upgraded with 3D Dolby Vision projection and Dolby Atmos sound.<br>
 * See https://professional.<wbr>dolby.com/cinema/ (Links to an external site.) and https://professional.<wbr>dolby.com/cinema/dolby-atmos (Links to an external site.) and http://www.dolby.com/us<wbr>/en/platforms/dolby-cinema.html for more information. (Links to an external site.)</p>
       </section>
+
       <section id="seats">
+        <!-- // todo: two cols on all screens except mobile (single col) and a toggle  -->
         <h2>seats</h2>
-        <p>The client wants to show pictures of their new seats: standard seating and first class seating. Images for the seats are provided in the original repository.<br>
-The Cinema offers discounted pricing weekday afternoons (ie 12pm weekday matinée sessions) and all day on Mondays.<br>
-Seat Prices<br>
-Seat Type	Seat Code	Discounted Prices	Normal Prices<br>
-Standard Adult	STA	15.00	20.50<br>
-Standard Concession	STP	13.50	18.00<br>
-Standard Child	STC	12.00	16.50<br>
-First Class Adult	FCA	24.00	30.00<br>
-First Class Concession	FCP	22.50	27.00<br>
-First Class Child	FCC	21.00	24.00<br>
-The content above should be integrated and adapt nicely in all screen sizes but no explicit instructions have been provided. This is an analysis and implementation task for you to think about and you may discuss ideas with other students.</p>
+        <p>The client wants to show pictures of their new seats: standard seating and first class seating. Images for the seats are provided in the original repository.</p>
+
+        <input id='test' type="checkbox" name="show-discounted-prices-checkbox" />
+
+        <div id="seat-cards">
+          <div id="standard-seating" class="seat-card">
+            <img src="../../media/Profern-Standard-Twin.png" alt="Image of standard seating option (Profern Standard Twin)" />
+            <p id="STA"></p>
+            <p id="STP"></p>
+            <p id="STC"></p>
+          </div>
+
+          <div id="first-class-seating" class="seat-card">
+            <img src="../../media/Profern-Verona-Twin.png" alt="Image of first class seating option (Profern Verona Twin)" />
+            <p id="FCA"></p>
+            <p id="FCP"></p>
+            <p id="FCC"></p>
+          </div>
+        </div>
       </section>
+
       <section id="showing">
         <h2>showing</h2>
         <p>This area should have 4 panels that shows details for each movie. These panels will have a "front" and a "back" side which will show different information (details below) and a "flip" effect should be triggered with a :focus pseudo state (and an optional :hover state if you wish).<br>
@@ -91,5 +92,6 @@ Prithviraj	AHF	6pm	-	9pm	https://www.imdb.com/title/tt9637132 (Links to an exter
       </div>
     </footer>
 
+<script src='lib.js' defer></script>
   </body>
 </html>
