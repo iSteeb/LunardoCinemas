@@ -38,10 +38,8 @@ This area should tell customers these things:<br>
       <section id="seats">
         <!-- // todo: two cols on all screens except mobile (single col) and a toggle  -->
         <h2>seats</h2>
-        <p>The client wants to show pictures of their new seats: standard seating and first class seating. Images for the seats are provided in the original repository.</p>
-
-        <input id='test' type="checkbox" name="show-discounted-prices-checkbox" />
-
+        <input id='show-discounted-prices-checkbox' type="checkbox" name="show-discounted-prices-checkbox" checked/>
+        <label for='show-discounted-prices-checkbox'>Show discounted prices</label>
         <div id="seat-cards">
           <div id="standard-seating" class="seat-card">
             <img src="../../media/Profern-Standard-Twin.png" alt="Image of standard seating option (Profern Standard Twin)" />

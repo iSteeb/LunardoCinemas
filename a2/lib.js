@@ -44,15 +44,9 @@ const prices = {
     discounted: '21.00'
   }
 };
-for (let code in prices) {
-  document.getElementById(code).innerHTML =
-    prices[code].name + ' (' + code + ') ' + prices[code].normal;
-}
 
-// toggle between discounted and full seat prices
-var showDiscountedPrices = document.getElementById('test');
-showDiscountedPrices.addEventListener('change', function () {
-  if (this.checked) {
+function updatePrices(isChecked) {
+  if (isChecked) {
     for (let code in prices) {
       document.getElementById(code).innerHTML =
         prices[code].name + ' (' + code + ') ' + prices[code].discounted;
@@ -63,4 +57,17 @@ showDiscountedPrices.addEventListener('change', function () {
         prices[code].name + ' (' + code + ') ' + prices[code].normal;
     }
   }
+}
+
+var showDiscountedPrices = document.getElementById(
+  'show-discounted-prices-checkbox'
+);
+
+// initialise prices on load
+updatePrices(showDiscountedPrices.checked);
+
+// toggle between discounted and full seat prices on checkbox change
+
+showDiscountedPrices.addEventListener('change', function () {
+  updatePrices(this.checked);
 });
