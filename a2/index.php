@@ -108,7 +108,7 @@ This area should tell customers these things:<br>
             <div class="flip-card-back">
               <p>${movie.synopsis}</p>
               <p>${movie.showings.join('<br>')}</p>
-              <button onclick="location.href='booking.php?movie=${code}';">Buy Tickets</button>
+              <a class='button' href='booking.php?movie=${code}'>Buy Tickets</a>
             </div>
           </div>
         `;

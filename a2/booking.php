@@ -61,17 +61,17 @@
         <p id="showings">${movie.showings.join('<br>')}</p>
       `;
 
-      let sessionRadios = '';
+      let dayRadios = '';
       for (let i = 0; i < movie.showings.length; i++) {
-        sessionRadios += `
-          <input type="radio" name="day" value="${movie.showings[i].substr(0,3).toUpperCase()}" id="session-${i}" ${i === 0 ? 'checked' : ''} data-pricing="${isDiscounted(movie.showings[i]) ? 'discprice' : 'fullprice'}">
-          <label for="day-${i}">${movie.showings[i]}</label><br>
+        dayRadios += `
+          <input type="radio" name="day" value="${movie.showings[i].substr(0,3).toUpperCase()}" id="day-${i}" ${i === 0 ? 'checked' : ''} hidden data-pricing="${isDiscounted(movie.showings[i]) ? 'discprice' : 'fullprice'}">
+          <label class='button' for="day-${i}">${movie.showings[i]}</label><br>
         `;
       }
 
-      let seats = '';
+      let seatSelects = '';
       for (let code in prices) {
-        seats += `
+        seatSelects += `
           <label for="seats-${code}">${prices[code].name} Seats:</label>
           <select name="seats[${code}]" id="seats-${code}" data-fullprice="${prices[code].normal}" data-discprice="${prices[code].discounted}">
             <option value="">Please Select</option>
@@ -97,9 +97,9 @@
           <input type='text' name='user[name]' value='' placeholder='name' required/>
           <input type='text' name='user[email]' value='' placeholder='email' required/>
           <input type='text' name='user[mobile]' value='' placeholder='mobile' required />
-          ${sessionRadios}
-          ${seats}
-          <button type='submit'>Submit</button>
+          ${dayRadios}
+          ${seatSelects}
+          <input class='button' type='submit' value="Submit" />
         </form>
       `;
 

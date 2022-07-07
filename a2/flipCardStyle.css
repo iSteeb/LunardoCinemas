@@ -52,7 +52,7 @@
 
 /* Tiny (unreasonably small, failsafe style) screens (don't show title, force full-width cards and navbar */
 /* 320 pixels is an iPhone SE screen width, so a value below this was chosen as the breakpoint */
-@media only screen and (max-width: 319px) {
+@media only screen and (max-width: 318px) {
   .flip-card {
     width: 90vw;
     height: calc(90vw * 1.62);
