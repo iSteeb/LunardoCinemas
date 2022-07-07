@@ -104,7 +104,7 @@ This area should tell customers these things:<br>
             <p>${movie.rating}</p>
             <p>${movie.synopsis}</p>
             <p>${movie.showings.join('<br>')}</p>
-            <a href="booking.php?movie=${code}">Buy Tickets</a>
+            <button onclick="location.href='booking.php?movie=${code}';">Buy Tickets</button>
           </div>
         `;
         movieShowtimesContainer.appendChild(movieCard);

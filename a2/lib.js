@@ -25,7 +25,15 @@ export const movies = {
     trailer: 'giXco2jaZ_4',
     actors: 'Tom Cruise, Jennifer Connelly, Miles Teller',
     director: 'Joseph Kosinski',
-    showings: ['Mon - Tue 9pm', 'Wed - Fri 9pm', 'Sat - Sun 6pm']
+    showings: [
+      'Mon 9pm',
+      'Tue 9pm',
+      'Wed 9pm',
+      'Thu 9pm',
+      'Fri 9pm',
+      'Sat 6pm',
+      'Sun 6pm'
+    ]
   },
   RMC: {
     name: 'Mrs Harris goes to Paris',
@@ -37,7 +45,7 @@ export const movies = {
     trailer: 'iO9JcPbbmAA',
     actors: 'Lesley Manville, Jason Isaacs, Anna Chancellor',
     director: 'Anthony Fabian',
-    showings: ['Wed - Fri 12pm', 'Sat - Sun 3pm']
+    showings: ['Wed 12pm', 'Thu 12pm', 'Fri 12pm', 'Sat 3pm', 'Sun 3pm']
   },
   FAM: {
     name: 'Lightyear',
@@ -49,7 +57,15 @@ export const movies = {
     trailer: 'wHBBoUtJHhA',
     actors: 'Chris Evans, Keke Palmer, Peter Sohn',
     director: 'Angus MacLane',
-    showings: ['Mon - Tue 12pm', 'Wed - Fri 6pm', 'Sat - Sun 12pm']
+    showings: [
+      'Mon 12pm',
+      'Tue 12pm',
+      'Wed 6pm',
+      'Thu 6pm',
+      'Fri 6pm',
+      'Sat 12pm',
+      'Sun 12pm'
+    ]
   },
   AHF: {
     name: 'Prithviraj',
@@ -61,7 +77,7 @@ export const movies = {
     trailer: '33-CQdPHyjw',
     actors: 'Akshay Kumar, Sanjay Dutt, Manushi Chhillar',
     director: 'Chandra Prakash Dwivedi',
-    showings: ['Mon - Tue 6pm', 'Sat - Sun 9pm']
+    showings: ['Mon 6pm', 'Tue 6pm', 'Sat 9pm', 'Sun 9pm']
   }
 };
 
@@ -111,4 +127,15 @@ export function updatePrices(isChecked) {
         prices[code].name + ' (' + code + ') ' + prices[code].normal;
     }
   }
+}
+
+export function isDiscounted(session) {
+  if (session.includes('Mon')) return true;
+  if (
+    session.includes('12pm') &&
+    !session.includes('Sat') &&
+    !session.includes('Sun')
+  )
+    return true;
+  return false;
 }
