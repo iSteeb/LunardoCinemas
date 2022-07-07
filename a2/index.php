@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Assignment 2</title>
+    <title>Lunardo</title>
     
     <!-- Keep wireframe.css for debugging, add your css to style.css -->
     <link id="wireframecss" type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
@@ -59,12 +59,7 @@ This area should tell customers these things:<br>
 
       <section id="showing">
         <h2>showing</h2>
-        <div id="movie-cards" class="card-container">
-
-        </div>
-<p>* Small / Mobile View: The panels should be displayed "1 up", ie in a single column, internal contents should also be displayed in a single column with the movie poster below the title and rating.<br>
-* Medium / Tablet View: The panels should be displayed "1 up" as per the Small / Mobile View but the internal contents should be displayed in two columns, the poster on the left and the title and rating on the right.<br>
-* Large / Desktop View: The panels should be displayed "2 up", ie two on one row, with the internal contents displayed in two columns as per the Medium / Tablet View.<br>
+        <div id="movie-cards" class="card-container"></div>
       </section>
     </main>
 
@@ -77,10 +72,43 @@ This area should tell customers these things:<br>
       <div id="footer-copyright">
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Steven Duzevich (s3963525) | Last modified <?= date ("Y F d  H:i", filemtime($_SERVER["SCRIPT_FILENAME"])); ?> | <a href="//github.com/isteeb/wp" target="_blank">GitHub Repo</a></p>
         <p>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</p>
-        <p><a href="booking.php">Debugging Booking</a></p>
       </div>
     </footer>
 
-<script src='lib.js' defer></script>
+    <script type=module defer>
+      import {prices, movies, updatePrices} from './lib.js';
+
+      var showDiscountedPrices = document.getElementById(
+        'show-discounted-prices-checkbox'
+      );
+
+      updatePrices(showDiscountedPrices.checked);
+
+      // toggle between discounted and full seat prices on checkbox change
+      showDiscountedPrices.addEventListener('change', function () {
+        updatePrices(this.checked);
+      });
+
+      var movieShowtimesContainer = document.getElementById('movie-cards');
+
+      for (let code in movies) {
+        let movie = movies[code];
+        let movieCard = document.createElement('div');
+        movieCard.className = 'movie-card card-template';
+        movieCard.innerHTML = `
+          <div class="movie-poster">
+            <img src="${movie.posterURL}" alt="Movie poster for ${movie.name}">
+          </div>
+          <div class="movie-details">
+            <h2>${movie.name}</h2>
+            <p>${movie.rating}</p>
+            <p>${movie.synopsis}</p>
+            <p>${movie.showings.join('<br>')}</p>
+            <a href="booking.php?movie=${code}">Buy Tickets</a>
+          </div>
+        `;
+        movieShowtimesContainer.appendChild(movieCard);
+      }
+    </script>
   </body>
 </html>

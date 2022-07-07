@@ -20,17 +20,12 @@
 
     <nav>
       <a href="index.php">Home</a>
-      <a href="#top">Go to Top</a>
+      <a href="#top" id="go-to-top-button">&uarr;</a>
     </nav>
 
     <main>
-      <section id='info'>
-        <h2>Info</h2>
-        <p>This page must have a consistent structure and style of the index page and show all of the details regarding the movie selected mentioned in the index page, along with a full synopsis of the movie, for one of the specified movies (your choice but the following details assumes the "ACT" Action film has been selected). 2 - 3 lead actors and director information should also be included here.<br>
-Tip: In the next assignment, the content will adapt based on the movie code supplied in the GET header from the index page.<br>
-A video trailer of the movie should be displayed which can either be an embedded video (eg in an iframe from a website like Youtube) or in a video element hosted from Coreteaching in your media folder. Make sure that this is not too big or too small for the type of screen that the user has.<br>
-Tip: Do not submit movie trailers or any media to Canvas as part of your assignment submission, all media must be present in your media folder, ie outside of your wp folder.</p>
-      </section>
+      <section id='movie-info'></section>
+
       <section id='book'>
         <h2>Booking Form</h2>
         <p>A usable and accessible form with clickable labels where appropriate, good layout and fieldset groups. It should contain and transmit:<br>
@@ -47,26 +42,49 @@ Tip: The booking page already has an inbuilt debug area, it shows what has been 
     </main>
 
     <footer>
-      <p>A footer element that contains the client's contact email, phone and address details (these can be dummy data). Please put your student name and student id in the footer with a link to your GitHub / BitBucket repository.</p>
-      <div>&copy;<script>
-        document.write(new Date().getFullYear());
-      </script> Put your name(s), student number(s) and group name here. Last modified <?= date ("Y F d  H:i", filemtime($_SERVER['SCRIPT_FILENAME'])); ?>.</div>
-      <div>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</div>
-      <div><button id='toggleWireframeCSS' onclick='toggleWireframe()'>Toggle Wireframe CSS</button></div>
+      <div id="contact-cards" class="card-container">
+        <div class="contact-card card-template"><p>Email:<br>enquiries@lunardo.com.au</p></div>
+        <div class="contact-card card-template"><p>Phone:<br>(02) 6174 4290</p></div>
+        <div class="contact-card card-template"><p>Address:<br>30/33 Hibberson St, Gungahlin</p></div>
+      </div>
+      <div id="footer-copyright">
+        <p>&copy; <script>document.write(new Date().getFullYear());</script> Steven Duzevich (s3963525) | Last modified <?= date ("Y F d  H:i", filemtime($_SERVER["SCRIPT_FILENAME"])); ?> | <a href="//github.com/isteeb/wp" target="_blank">GitHub Repo</a></p>
+        <p>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</p>
+      </div>
     </footer>
+
+    <script type=module defer>
+      import {prices, movies} from './lib.js';
+
+      const $_GET = <?php echo json_encode($_GET); ?>;
+      const movie = movies[$_GET.movie];
+      const movieInfoDiv = document.getElementById('movie-info');
+
+      movieInfoDiv.innerHTML = `
+        <h2 id='name'>${movie.name}</h2>
+        <img src="${movie.posterURL}" alt="Movie poster for ${movie.name}">
+        <p id="rating">${movie.rating}</p>
+        <p id="synopsis">${movie.synopsis}</p>
+        <div id="trailer">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/${movie.trailer}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p id="actors">${movie.actors}</p>
+        <p id="director">${movie.director}</p>
+        <p id="showings">${movie.showings.join('<br>')}</p>
+      `;
+    </script>
 
     <aside id="debug">
       <hr>
       <h3>Debug Area</h3>
       <pre>
-GET Contains:
-<?php print_r($_GET) ?>
-POST Contains:
-<?php print_r($_POST) ?>
-SESSION Contains:
-<?php print_r($_SESSION) ?>
+        GET Contains:
+        <?php print_r($_GET) ?>
+        POST Contains:
+        <?php print_r($_POST) ?>
+        SESSION Contains:
+        <?php print_r($_SESSION) ?>
       </pre>
     </aside>
-
   </body>
 </html>
