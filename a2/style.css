@@ -29,8 +29,8 @@ p {
 
 .card-container {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 .card-template {
@@ -104,7 +104,7 @@ main section {
 
 /* SEAT SECTION STYLES */
 .seat-card {
-  width: clamp(280px, 20vw, 25vw);
+  width: clamp(250px, 90%, 375px);
   flex-direction: column;
 }
 
@@ -112,23 +112,9 @@ main section {
   width: 80%;
 }
 
-/* MOVIE SECTION STYLES */
-/* todo: need to fix this a lot */
-#movie-cards {
-  flex-flow: row wrap;
-}
-.movie-card {
-  width: clamp(280px, 20vw, 25vw);
-  overflow: hidden;
-}
-
-.movie-card img {
-  width: clamp(280px, 20vw, 25vw);
-}
-
 /* FOOTER STYLES */
 .contact-card {
-  width: clamp(280px, 20vw, 25vw);
+  width: clamp(250px, 90%, 375px);
 }
 
 #footer-copyright {
@@ -144,7 +130,7 @@ main section {
 
 /* Tiny (unreasonably small, failsafe style) screens (don't show title, force full-width cards and navbar */
 /* 320 pixels is an iPhone SE screen width, so a value below this was chosen as the breakpoint */
-@media only screen and (max-width: 318px) {
+@media only screen and (max-width: 319px) {
   #logo {
     margin-left: auto;
     margin-right: auto;
@@ -157,8 +143,7 @@ main section {
   }
 
   .contact-card,
-  .seat-card,
-  .movie-card {
+  .seat-card {
     width: 90%;
   }
 
@@ -173,32 +158,10 @@ main section {
   }
 }
 
-/* Screens small enough to require a column card layouts */
-/* based on tailwind small breakpoint */
-@media only screen and (max-width: 640px) {
+@media only screen and (min-width: 640px) {
+  #seat-cards,
   #contact-cards {
-    flex-flow: column nowrap;
-    align-items: center;
-  }
-
-  #seat-cards {
-    flex-flow: column nowrap;
-    align-items: center;
-  }
-
-  /* 1 up, internal single column movie card layout for small screens */
-  #movie-cards {
-    flex-flow: column nowrap;
-    align-items: center;
-  }
-}
-
-/* 1 up, internal double column movie card layout for medium screens */
-/* based on tailwind extra large breakpoint */
-/* TODO: this */
-@media only screen and (max-width: 1280px) {
-  #movie-cards {
-    flex-flow: column nowrap;
-    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
   }
 }

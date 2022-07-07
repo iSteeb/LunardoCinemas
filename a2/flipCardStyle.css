@@ -14,15 +14,10 @@
 
 .flip-card {
   position: relative;
-  width: clamp(
-    280px,
-    20vw,
-    25vw
-  ); /* width of card based on same calculation as other cards */
-  height: calc(
-    (clamp(280px, 20vw, 25vw)) * 1.62
-  ); /* height of card based on width, image aspect ratio (729/500) and calculation of image being 90% of this container height */
+  width: clamp(250px, 90vw, 600px);
+  height: calc((clamp(250px, 90vw, 600px)) * 1.62);
   perspective: 100%;
+  margin: clamp(0.5em, 1vw, 0.5vh);
 }
 
 .flip-card-content {
@@ -53,4 +48,75 @@
 
 .flip-card-back {
   transform: rotateY(180deg);
+}
+
+/* Tiny (unreasonably small, failsafe style) screens (don't show title, force full-width cards and navbar */
+/* 320 pixels is an iPhone SE screen width, so a value below this was chosen as the breakpoint */
+@media only screen and (max-width: 319px) {
+  .flip-card {
+    width: 90vw;
+    height: calc(90vw * 1.62);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .flip-card {
+    width: clamp(690px, 90vw, 1150px);
+    height: calc((clamp(690px, 90vw, 1150px)) * 0.81);
+  }
+
+  .flip-card-info {
+    height: 100%;
+    width: 50%;
+    float: left;
+  }
+
+  .flip-card-poster {
+    height: 100%;
+    width: 50%;
+    float: left;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #movie-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5vmin;
+  }
+  .flip-card {
+    width: clamp(500px, 40vw, 600px);
+    height: calc((clamp(500px, 40vw, 600px)) * 0.81);
+    justify-self: end;
+  }
+
+  .flip-card:nth-child(2n) {
+    justify-self: start;
+  }
+
+  .flip-card-info,
+  .flip-card-poster {
+    height: 100%;
+    width: 50%;
+    float: right;
+  }
+
+  .flip-card-poster {
+    border-top-left-radius: clamp(0.5em, 1vw, 0.5vh);
+    border-bottom-left-radius: clamp(0.5em, 1vw, 0.5vh);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .flip-card:nth-child(2n) .flip-card-info,
+  .flip-card:nth-child(2n) .flip-card-poster {
+    float: left;
+  }
+
+  .flip-card:nth-child(2n) .flip-card-poster {
+    border-top-right-radius: clamp(0.5em, 1vw, 0.5vh);
+    border-bottom-right-radius: clamp(0.5em, 1vw, 0.5vh);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
