@@ -19,26 +19,13 @@
     </header>
 
     <nav>
-      <a href="index.php">Home</a>
+      <a href="index.php">home</a>
       <a href="#top" id="go-to-top-button">&uarr;</a>
     </nav>
 
     <main>
       <section id='movie-info'></section>
-
-      <section id='book'>
-        <h2>Booking Form</h2>
-        <p>A usable and accessible form with clickable labels where appropriate, good layout and fieldset groups. It should contain and transmit:<br>
-* A hidden field to transmit the movie code, eg name="movie" and value="ACT" if the booking is for the action movie. An honest user should not be able to see or modify this field.<br>
-* Six drop down boxes for each of the seats group into an array, eg with name="seats[STA]" if this field is for the number of standard adult seats. The first option should be please select and have a blank value, other options should show integers between 1 and 10 and have a matching value. These fields should contain two data attributes that contain the full and discount price for each seat, eg data-fullprice="20.5" and data-discprice="15" for the standard adult seats. UPDATE: Previously a '-sta' seat-type substring was placed here, this was a mistake, you will need to remove it for assignment 3. <br>
-* Radio buttons and associated labels for each of the sessions that the movie is playing should be shown, but these should be styled so that the actual radio field is not shown and their associated labels look like 3D buttons in a raised state when not selected and a depressed state when selected. The radio buttons should all have the same name, ie name="day" and different values eg value="WED" if the movie is playing on a Wednesday. All buttons should have a data attribute that represents a full or discount session for the time it is playing, eg for movies playing on a Wednesday data-pricing="discprice" if playing at 12pm, data-pricing="fullprice" for all other times. <br>
-* Text-based fields of an appropriate type should collect the following user details and form submission should be blocked ONLY if these are left blank:<br>
-    * the full name of the customer, name="user[name]"<br>
-    * an email address, name="user[email]"<br>
-    * an Australian mobile number, name="user[mobile]"<br>
-The form should submit to itself (ie the booking page) using the post method.<br>
-Tip: The booking page already has an inbuilt debug area, it shows what has been submitted via GET and POST methods. Make sure that all fields arrive via the correct method and that no illegal values can be submitted by honest users.</p>
-      </section>
+      <section id='book'></section>
     </main>
 
     <footer>
@@ -54,11 +41,12 @@ Tip: The booking page already has an inbuilt debug area, it shows what has been 
     </footer>
 
     <script type=module defer>
-      import {prices, movies} from './lib.js';
+      import {prices, movies, isDiscounted} from './lib.js';
 
       const $_GET = <?php echo json_encode($_GET); ?>;
       const movie = movies[$_GET.movie];
       const movieInfoDiv = document.getElementById('movie-info');
+      const bookingDiv = document.getElementById('book');
 
       movieInfoDiv.innerHTML = `
         <h2 id='name'>${movie.name}</h2>
@@ -72,6 +60,50 @@ Tip: The booking page already has an inbuilt debug area, it shows what has been 
         <p id="director">${movie.director}</p>
         <p id="showings">${movie.showings.join('<br>')}</p>
       `;
+
+      let sessionRadios = '';
+      for (let i = 0; i < movie.showings.length; i++) {
+        sessionRadios += `
+          <input type="radio" name="day" value="${movie.showings[i].substr(0,3).toUpperCase()}" id="session-${i}" ${i === 0 ? 'checked' : ''} data-pricing="${isDiscounted(movie.showings[i]) ? 'discprice' : 'fullprice'}">
+          <label for="day-${i}">${movie.showings[i]}</label><br>
+        `;
+      }
+
+      let seats = '';
+      for (let code in prices) {
+        seats += `
+          <label for="seats-${code}">${prices[code].name} Seats:</label>
+          <select name="seats[${code}]" id="seats-${code}" data-fullprice="${prices[code].normal}" data-discprice="${prices[code].discounted}">
+            <option value="">Please Select</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select><br>
+        `;
+      }
+
+      bookingDiv.innerHTML = `
+        <h2>Booking Form</h2>
+        <form action='booking.php?movie=${$_GET.movie}' method='post'>
+          <input type='hidden' name='movie' value='${$_GET.movie}' />
+
+          <input type='text' name='user[name]' value='' placeholder='name' required/>
+          <input type='text' name='user[email]' value='' placeholder='email' required/>
+          <input type='text' name='user[mobile]' value='' placeholder='mobile' required />
+          ${sessionRadios}
+          ${seats}
+          <button type='submit'>Submit</button>
+        </form>
+      `;
+
+
     </script>
 
     <aside id="debug">
