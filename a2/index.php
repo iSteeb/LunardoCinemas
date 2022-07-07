@@ -8,6 +8,8 @@
     <!-- Keep wireframe.css for debugging, add your css to style.css -->
     <link id="wireframecss" type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
     <link id='stylecss' type="text/css" rel="stylesheet" href="style.css?t=<?= filemtime("style.css"); ?>">
+    <link id='stylecss' type="text/css" rel="stylesheet" href="flipCardStyle.css?t=<?= filemtime("flipCardStyle.css"); ?>">
+
     <script src="../wireframe.js"></script>
   </head>
 
@@ -99,17 +101,18 @@ This area should tell customers these things:<br>
       for (let code in movies) {
         let movie = movies[code];
         let movieCard = document.createElement('div');
-        movieCard.className = 'movie-card card-template';
+        movieCard.className = 'flip-card';
         movieCard.innerHTML = `
-          <div class="movie-poster">
-            <img src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
-          </div>
-          <div class="movie-details">
-            <h2>${movie.name}</h2>
-            <p>${movie.rating}</p>
-            <p>${movie.synopsis}</p>
-            <p>${movie.showings.join('<br>')}</p>
-            <button onclick="location.href='booking.php?movie=${code}';">Buy Tickets</button>
+          <div class="flip-card-content">
+            <div class="flip-card-front">
+              <div class='flip-card-info'><h2>${movie.name}</h2><p>${movie.rating}</p></div>
+              <img class='flip-card-poster' src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
+            </div>
+            <div class="flip-card-back">
+              <p>${movie.synopsis}</p>
+              <p>${movie.showings.join('<br>')}</p>
+              <button onclick="location.href='booking.php?movie=${code}';">Buy Tickets</button>
+            </div>
           </div>
         `;
         movieShowtimesContainer.appendChild(movieCard);

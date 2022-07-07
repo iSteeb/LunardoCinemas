@@ -67,6 +67,7 @@ nav {
   top: 0;
   height: var(--nav-bar-height);
   background-color: #d1b800;
+  z-index: 100;
 }
 
 nav a {
@@ -102,8 +103,6 @@ main section {
 }
 
 /* SEAT SECTION STYLES */
-/* todo: need to fix this so that it collapses to one row in small displays */
-
 .seat-card {
   width: clamp(280px, 20vw, 25vw);
   flex-direction: column;
@@ -115,9 +114,12 @@ main section {
 
 /* MOVIE SECTION STYLES */
 /* todo: need to fix this a lot */
-
+#movie-cards {
+  flex-flow: row wrap;
+}
 .movie-card {
   width: clamp(280px, 20vw, 25vw);
+  overflow: hidden;
 }
 
 .movie-card img {
@@ -171,25 +173,30 @@ main section {
   }
 }
 
-/* Screens small enough to require a column footer card layout */
-@media only screen and (max-width: 700px) {
+/* Screens small enough to require a column card layouts */
+/* based on tailwind small breakpoint */
+@media only screen and (max-width: 640px) {
   #contact-cards {
     flex-flow: column nowrap;
     align-items: center;
   }
-}
 
-/* Screens small enough to require a column seat card layout */
-@media only screen and (max-width: 700px) {
   #seat-cards {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  /* 1 up, internal single column movie card layout for small screens */
+  #movie-cards {
     flex-flow: column nowrap;
     align-items: center;
   }
 }
 
-/* Screens small enough to require a column movie card layout */
+/* 1 up, internal double column movie card layout for medium screens */
+/* based on tailwind extra large breakpoint */
 /* TODO: this */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1280px) {
   #movie-cards {
     flex-flow: column nowrap;
     align-items: center;
