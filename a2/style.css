@@ -2,11 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
-nav,
-section {
-  border: 1px solid #d1b800;
-}
-
 html {
   --nav-bar-height: 2em;
   scroll-behavior: smooth;
@@ -15,18 +10,21 @@ html {
 
 body {
   background-color: #2c3c46;
-  margin: 2.5%;
+  padding: 2.5%;
+  margin: auto;
   overflow-x: hidden;
+  max-width: 1500px;
 }
 
 h2,
 h3 {
   font-family: 'Montserrat', sans-serif;
+  color: rgb(230, 230, 230);
 }
 
 p {
   font-family: 'Gruppo', sans-seri;
-  color: white;
+  color: rgb(230, 230, 230);
 }
 
 .card-container {
@@ -99,9 +97,7 @@ nav a {
 }
 
 /* SECTION STYLES */
-#about,
-#seats,
-#showing {
+main section {
   min-height: calc(100vh - var(--nav-bar-height));
 }
 
