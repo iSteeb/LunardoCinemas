@@ -1,9 +1,12 @@
-// event listener that controls the display status of the go-to-top-button (show only if scroll position is passed the navbar)
+// event listener that controls the display status of the go-to-top-button (show only if scroll position is passed the navbar, and don't block the footer)
 document.addEventListener(
   'scroll',
   function () {
     if (
-      window.scrollY >= document.getElementsByTagName('nav').item(0).offsetTop
+      window.scrollY >=
+        document.getElementsByTagName('nav').item(0).offsetTop &&
+      window.scrollY + window.innerHeight <
+        document.getElementsByTagName('footer').item(0).offsetTop
     ) {
       document.getElementById('go-to-top-button').style.display = 'block';
     } else {
@@ -18,8 +21,7 @@ export const movies = {
   ACT: {
     name: 'Top Gun: Maverick',
     rating: 'PG-13',
-    posterURL:
-      'https://m.media-amazon.com/images/M/MV5BOWQwOTA1ZDQtNzk3Yi00ZmVmLWFiZGYtNjdjNThiYjJhNzRjXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX988_.jpg',
+    posterURL: 'maverick.png',
     synopsis:
       "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
     trailer: 'giXco2jaZ_4',
@@ -38,8 +40,7 @@ export const movies = {
   RMC: {
     name: 'Mrs Harris goes to Paris',
     rating: 'PG',
-    posterURL:
-      'https://m.media-amazon.com/images/M/MV5BY2UyOWJjMWEtNmIwYS00ZjM5LWEyYjMtMTI4NDBhMzViNmIyXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg',
+    posterURL: 'harris.png',
     synopsis:
       'A widowed cleaning lady in 1950s London falls madly in love with a couture Dior dress, and decides that she must have one of her own.',
     trailer: 'iO9JcPbbmAA',
@@ -50,8 +51,7 @@ export const movies = {
   FAM: {
     name: 'Lightyear',
     rating: 'PG',
-    posterURL:
-      'https://m.media-amazon.com/images/M/MV5BYTg2Zjk0ZTctM2ZmMi00MDRmLWJjOGYtNWM0YjBmZTBjMjRkXkEyXkFqcGdeQXVyMTM1MTE1NDMx._V1_.jpg',
+    posterURL: 'lightyear.png',
     synopsis:
       'While spending years attempting to return home, marooned Space Ranger Buzz Lightyear encounters an army of ruthless robots commanded by Zurg who are attempting to steal his fuel source.',
     trailer: 'wHBBoUtJHhA',
@@ -70,8 +70,7 @@ export const movies = {
   AHF: {
     name: 'Prithviraj',
     rating: 'M',
-    posterURL:
-      'https://m.media-amazon.com/images/M/MV5BNzlkZjI3ZDctNTEzMy00MjUxLWI5YjQtYjg0ODNjNzdjZjg0XkEyXkFqcGdeQXVyNTkzNDQ4ODc@._V1_FMjpg_UX300_.jpg',
+    posterURL: 'prithviraj.png',
     synopsis:
       'A fearless warrior. An epic love story. Witness the grand saga of Samrat Prithviraj Chauhan.',
     trailer: '33-CQdPHyjw',

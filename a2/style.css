@@ -30,7 +30,7 @@ p {
 .card-container {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .card-template {
@@ -106,6 +106,7 @@ main section {
 
 .seat-card {
   width: clamp(280px, 20vw, 25vw);
+  flex-direction: column;
 }
 
 .seat-card img {
@@ -140,6 +141,7 @@ main section {
 }
 
 /* Tiny (unreasonably small, failsafe style) screens (don't show title, force full-width cards and navbar */
+/* 320 pixels is an iPhone SE screen width, so a value below this was chosen as the breakpoint */
 @media only screen and (max-width: 318px) {
   #logo {
     margin-left: auto;
@@ -178,7 +180,6 @@ main section {
 }
 
 /* Screens small enough to require a column seat card layout */
-/* TODO: this */
 @media only screen and (max-width: 700px) {
   #seat-cards {
     flex-flow: column nowrap;

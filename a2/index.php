@@ -40,19 +40,24 @@ This area should tell customers these things:<br>
         <h2>seats</h2>
         <input id='show-discounted-prices-checkbox' type="checkbox" name="show-discounted-prices-checkbox" checked/>
         <label for='show-discounted-prices-checkbox'>Show discounted prices</label>
+
         <div id="seat-cards" class="card-container">
           <div id="standard-seating" class="seat-card card-template">
             <img src="../../media/Profern-Standard-Twin.png" alt="Image of standard seating option (Profern Standard Twin)" />
-            <p id="STA"></p>
-            <p id="STP"></p>
-            <p id="STC"></p>
+            <div>
+              <p id="STA"></p>
+              <p id="STP"></p>
+              <p id="STC"></p>
+            </div>
           </div>
 
           <div id="first-class-seating" class="seat-card card-template">
             <img src="../../media/Profern-Verona-Twin.png" alt="Image of first class seating option (Profern Verona Twin)" />
+            <div>
             <p id="FCA"></p>
             <p id="FCP"></p>
             <p id="FCC"></p>
+</div>
           </div>
         </div>
       </section>
@@ -97,7 +102,7 @@ This area should tell customers these things:<br>
         movieCard.className = 'movie-card card-template';
         movieCard.innerHTML = `
           <div class="movie-poster">
-            <img src="${movie.posterURL}" alt="Movie poster for ${movie.name}">
+            <img src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
           </div>
           <div class="movie-details">
             <h2>${movie.name}</h2>
