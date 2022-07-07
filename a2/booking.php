@@ -50,7 +50,7 @@
 
       movieInfoDiv.innerHTML = `
         <h2 id='name'>${movie.name}</h2>
-        <img src="${movie.posterURL}" alt="Movie poster for ${movie.name}">
+        <img src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
         <p id="rating">${movie.rating}</p>
         <p id="synopsis">${movie.synopsis}</p>
         <div id="trailer">
