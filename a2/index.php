@@ -60,39 +60,11 @@ This area should tell customers these things:<br>
       <section id="showing">
         <h2>showing</h2>
         <div id="movie-cards" class="card-container">
-          <div id="movie-ACT" class="movie-card card-template">
-            <p>movie info here</p>
-          </div>
 
-          <div id="movie-RMC" class="movie-card card-template">
-            <p>movie info here</p>
-          </div>
-
-          <div id="movie-FAM" class="movie-card card-template">
-            <p>movie info here</p>
-
-          </div>
-
-          <div id="movie-AHF" class="movie-card card-template">
-            <p>movie info here</p>
-
-          </div>
         </div>
-        <p>This area should have 4 panels that shows details for each movie. These panels will have a "front" and a "back" side which will show different information (details below) and a "flip" effect should be triggered with a :focus pseudo state (and an optional :hover state if you wish).<br>
-* On the front: a movie poster, along with the name of the movie and the rating (eg PG, MA, R etc.). Tip: It will help if the poster images are all the same height and width as each other.<br>
-* On the back: a short synopsis of the movie plot should be show along with a list of day / times that the movie is playing, and a "book now" hyperlink which should be styled to look like a button. This link should take the user to a booking.php page along with a GET header containing the movie id, eg the action movie link should direct the user to "booking.php?movie=ACT". Tip: This url can be hard coded, but in the next assignment you are expected to create module code to generate these panels.<br>
-The content in the movie panels should adapt to large, medium and small screens, the layout for the front of each panel is described below:<br>
-* Small / Mobile View: The panels should be displayed "1 up", ie in a single column, internal contents should also be displayed in a single column with the movie poster below the title and rating.<br>
+<p>* Small / Mobile View: The panels should be displayed "1 up", ie in a single column, internal contents should also be displayed in a single column with the movie poster below the title and rating.<br>
 * Medium / Tablet View: The panels should be displayed "1 up" as per the Small / Mobile View but the internal contents should be displayed in two columns, the poster on the left and the title and rating on the right.<br>
 * Large / Desktop View: The panels should be displayed "2 up", ie two on one row, with the internal contents displayed in two columns as per the Medium / Tablet View.<br>
-The content in the back of each panel should adapt nicely in all screen sizes but no explicit instructions have been provided. This is an analysis and implementation task for you to think about and you may discuss ideas with other students.<br>
-The table below shows which movies have been selected by the client and when they are playing:<br>
-Movies and Weekly Session Times<br>
-Movie Title	CODE	Mon - Tue	Wed - Fri	Sat - Sun	IMDB Link<br>
-Top Gun: Maverick	ACT	9pm	9pm	6pm	https://www.imdb.com/title/tt1745960 (Links to an external site.)<br>
-Mrs Harris goes to Paris	RMC	-	12pm	3pm	https://www.imdb.com/title/tt5151570 (Links to an external site.)<br>
-Lightyear	FAM	12pm	6pm	12pm	https://www.imdb.com/title/tt10298810 (Links to an external site.)<br>
-Prithviraj	AHF	6pm	-	9pm	https://www.imdb.com/title/tt9637132 (Links to an external site.)</p>
       </section>
     </main>
 

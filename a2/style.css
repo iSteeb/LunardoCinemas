@@ -123,6 +123,10 @@ nav a {
   width: clamp(280px, 20vw, 25vw);
 }
 
+.movie-card img {
+  width: clamp(280px, 20vw, 25vw);
+}
+
 /* FOOTER STYLES */
 .contact-card {
   width: clamp(280px, 20vw, 25vw);
