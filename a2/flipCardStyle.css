@@ -7,7 +7,7 @@
 .flip-card-info {
   height: 10%;
   display: flex;
-  flex: row nowrap;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   padding: 1em;
@@ -23,7 +23,7 @@
   position: relative;
   width: clamp(250px, 90vw, 600px);
   height: calc((clamp(250px, 90vw, 600px)) * 1.62);
-  perspective: 100%;
+  perspective: 1000px;
   margin: clamp(0.5em, 1vw, 0.5vh);
 }
 

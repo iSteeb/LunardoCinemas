@@ -76,7 +76,7 @@
       </div>
     </footer>
 
-    <script type=module defer>
+    <script type=module>
       import {prices, movies, updatePrices} from './lib.js';
 
       var showDiscountedPrices = document.getElementById(

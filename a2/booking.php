@@ -40,7 +40,7 @@
       </div>
     </footer>
 
-    <script type=module defer>
+    <script type=module>
       import {prices, movies, isDiscounted} from './lib.js';
 
       const $_GET = <?php echo json_encode($_GET); ?>;
