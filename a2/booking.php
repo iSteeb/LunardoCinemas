@@ -19,7 +19,7 @@
     </header>
 
     <nav>
-      <a href="index.php">home</a>
+      <a href="index.php"><img id="home-icon" src="../../media/home-icon.png" alt="Menubar home icon" /></a>
       <a href="#top" id="go-to-top-button">&uarr;</a>
     </nav>
 
@@ -64,8 +64,8 @@
       let dayRadios = '';
       for (let i = 0; i < movie.showings.length; i++) {
         dayRadios += `
-          <input type="radio" name="day" value="${movie.showings[i].substr(0,3).toUpperCase()}" id="day-${i}" ${i === 0 ? 'checked' : ''} hidden data-pricing="${isDiscounted(movie.showings[i]) ? 'discprice' : 'fullprice'}">
-          <label class='button' for="day-${i}">${movie.showings[i]}</label><br>
+          <input type="radio" name="day" value="${movie.showings[i].substr(0,3).toUpperCase()}" id="day-${i}" ${i === 0 ? 'checked' : ''} data-pricing="${isDiscounted(movie.showings[i]) ? 'discprice' : 'fullprice'}">
+          <label class='btn' for="day-${i}">${movie.showings[i]}</label><br>
         `;
       }
 
@@ -99,7 +99,8 @@
           <input type='text' name='user[mobile]' value='' placeholder='mobile' required />
           ${dayRadios}
           ${seatSelects}
-          <input class='button' type='submit' value="Submit" />
+          <input id="submit" class='btn' type='submit' value="submit" />
+          <label class='btn' for='submit'>Submit</label>
         </form>
       `;
 

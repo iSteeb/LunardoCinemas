@@ -20,9 +20,9 @@
     </header>
 
     <nav>
-      <a href="#about">about us</a>
-      <a href="#seats">our seats</a>
-      <a href="#showing">our movies</a>
+      <a href="#about">About</a>
+      <a href="#seats">Seats & Pricing</a>
+      <a href="#showing">Movies</a>
       <a href="#top" id="go-to-top-button">&uarr;</a>
     </nav>
 
@@ -38,11 +38,11 @@ This area should tell customers these things:<br>
       </section>
 
       <section id="seats">
-        <!-- // todo: two cols on all screens except mobile (single col) and a toggle  -->
         <h2>seats</h2>
+        
         <input id='show-discounted-prices-checkbox' type="checkbox" name="show-discounted-prices-checkbox" checked/>
-        <label for='show-discounted-prices-checkbox'>Show discounted prices</label>
-
+        <label class='btn' id='show-discounted-prices-label' for='show-discounted-prices-checkbox'>Show discount</label>
+                
         <div id="seat-cards" class="card-container">
           <div id="standard-seating" class="seat-card card-template">
             <img src="../../media/Profern-Standard-Twin.png" alt="Image of standard seating option (Profern Standard Twin)" />
@@ -102,13 +102,13 @@ This area should tell customers these things:<br>
         movieCard.innerHTML = `
           <div class="flip-card-content">
             <div class="flip-card-front">
-              <div class='flip-card-info'><h2>${movie.name}</h2><p>${movie.rating}</p></div>
+              <div class='flip-card-info'><h3>${movie.name}</h3><p>${movie.rating}</p></div>
               <img class='flip-card-poster' src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
             </div>
             <div class="flip-card-back">
               <p>${movie.synopsis}</p>
               <p>${movie.showings.join('<br>')}</p>
-              <a class='button' href='booking.php?movie=${code}'>Buy Tickets</a>
+              <a class='btn' href='booking.php?movie=${code}'>Buy Tickets</a>
             </div>
           </div>
         `;
