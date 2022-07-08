@@ -99,11 +99,14 @@
         movieCard.innerHTML = `
           <div class="flip-card-content">
             <div class="flip-card-front">
-              <div class='flip-card-info'><h3>${movie.name}</h3><p>${movie.rating}</p></div>
+              <div class='flip-card-info'><h3 id='flip-card-name'>${movie.name} <sub>(${movie.rating})</sub></h3></div>
               <img class='flip-card-poster' src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
             </div>
             <div class="flip-card-back">
+              <h2 id='flip-card-back-h2'>${movie.name} <sub>(${movie.rating})</sub></h2>
+              <h3>Synopsis</h3>
               <p>${movie.synopsis}</p>
+              <h3>Session times</h3>
               <p>${movie.showings.join('<br>')}</p>
               <a class='btn' href='booking.php?movie=${code}'>Buy Tickets</a>
             </div>

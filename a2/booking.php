@@ -50,8 +50,7 @@
 
       movieInfoDiv.innerHTML = `
         <div id="movie-info-heading">
-          <h2 id='name'>${movie.name}</h2>
-          <p id="rating">(${movie.rating})</p>
+          <h2 id='name'>${movie.name} <sub>(${movie.rating})</sub></h2>
         </div>
 
         <div id='movie-media-container'>
@@ -65,7 +64,7 @@
         <div id="movie-detail-cards" class="card-container">
           <div class="movie-detail-card card-template"><h3>Director</h3><p id="director">${movie.director}</p></div>
           <div class="movie-detail-card card-template"><h3>STARS</h3><p id="actors">${movie.actors}</p></div>
-          <div class="movie-detail-card card-template"><h3>Showtimes</h3><p id="showings">${movie.showings.join('<br>')}</p></div>
+          <div class="movie-detail-card card-template"><h3>Showtimes</h3><p id="showings">${movie.showings.join(', ')}</p></div>
         </div>
       `;
 
@@ -73,14 +72,14 @@
       for (let i = 0; i < movie.showings.length; i++) {
         dayRadios += `
           <input type="radio" name="day" value="${movie.showings[i].substr(0,3).toUpperCase()}" id="day-${i}" ${i === 0 ? 'checked' : ''} data-pricing="${isDiscounted(movie.showings[i]) ? 'discprice' : 'fullprice'}">
-          <label class='btn' for="day-${i}">${movie.showings[i]}</label><br>
+          <label class='btn day-radio-label' for="day-${i}">${movie.showings[i]}</label>
         `;
       }
 
       let seatSelects = '';
       for (let code in prices) {
         seatSelects += `
-          <label for="seats-${code}">${prices[code].name} Seats:</label>
+          <label class='seat-selection-label' for="seats-${code}">${prices[code].name} Seats:</label>
           <select name="seats[${code}]" id="seats-${code}" data-fullprice="${prices[code].normal}" data-discprice="${prices[code].discounted}">
             <option value="">Please Select</option>
             <option value="1">1</option>
@@ -98,14 +97,16 @@
       }
 
       bookingDiv.innerHTML = `
-        <h2>Booking Form</h2>
-        <form action='booking.php?movie=${$_GET.movie}' method='post'>
+        <h2>Book now</h2>
+        <form id='booking-form' action='booking.php?movie=${$_GET.movie}' method='post'>
           <input type='hidden' name='movie' value='${$_GET.movie}' />
 
           <input type='text' name='user[name]' value='' placeholder='name' required/>
           <input type='text' name='user[email]' value='' placeholder='email' required/>
           <input type='text' name='user[mobile]' value='' placeholder='mobile' required />
+          <h3>Select a session</h3>
           ${dayRadios}
+          <h3>Add seats</h3>
           ${seatSelects}
           <input id="submit" class='btn' type='submit' value="submit" />
           <label class='btn' for='submit'>Submit</label>

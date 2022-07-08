@@ -307,10 +307,14 @@ nav a {
   width: 100%;
 }
 
-#rating,
 #name {
   display: inline-block;
   margin-bottom: 0;
+}
+
+#name > sub {
+  display: inline-block;
+  vertical-align: bottom;
 }
 
 #movie-media-container {
@@ -348,6 +352,55 @@ nav a {
   margin: 0;
 }
 
+#book {
+  width: 100%;
+}
+
+#booking-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.day-radio-label {
+  display: block;
+  margin: 1em 2em 2em 0;
+  width: calc(100% - 2em);
+}
+
+input[type='text'] {
+  width: calc(100% - 2em);
+  height: 3em;
+  border: 1px solid var(--highlight-color);
+  background-color: var(--primary-color-light);
+  color: var(--light-text-color);
+  padding: 1em;
+  margin: 1em 1em 1em 0;
+}
+
+#booking-form h3 {
+  display: block;
+}
+
+.seat-selection-label {
+  color: var(--light-text-color);
+  display: block;
+}
+
+select {
+  display: block;
+  width: calc(100%);
+  max-width: 400px;
+  height: 3em;
+  border: 1px solid var(--highlight-color);
+  color: var(--light-text-color);
+  background-color: var(--primary-color-light);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  appearance: none;
+}
+
 @media only screen and (max-width: 318px) {
   .movie-detail-card {
     width: 90%;
@@ -373,5 +426,21 @@ nav a {
     flex-flow: row nowrap;
     justify-content: space-evenly;
     align-items: flex-start;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .day-radio-label {
+    display: inline;
+    margin: 1em 2em 2em 0;
+    width: calc((90% - 2em) / 7);
+  }
+
+  #booking-form {
+    max-width: none;
+  }
+
+  input[type='text'] {
+    width: calc((90% - 2em) / 4);
   }
 }
