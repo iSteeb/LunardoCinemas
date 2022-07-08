@@ -49,16 +49,24 @@
       const bookingDiv = document.getElementById('book');
 
       movieInfoDiv.innerHTML = `
-        <h2 id='name'>${movie.name}</h2>
-        <img src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
-        <p id="rating">${movie.rating}</p>
-        <p id="synopsis">${movie.synopsis}</p>
-        <div id="trailer">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/${movie.trailer}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div id="movie-info-heading">
+          <h2 id='name'>${movie.name}</h2>
+          <p id="rating">(${movie.rating})</p>
         </div>
-        <p id="actors">${movie.actors}</p>
-        <p id="director">${movie.director}</p>
-        <p id="showings">${movie.showings.join('<br>')}</p>
+
+        <div id='movie-media-container'>
+          <img id='booking-poster' src="../../media/${movie.posterURL}" alt="Movie poster for ${movie.name}">
+          <div id='trailer-container'>
+            <iframe id="trailer" src="https://www.youtube.com/embed/${movie.trailer}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <p id="synopsis">${movie.synopsis}</p>
+        <div id="movie-detail-cards" class="card-container">
+          <div class="movie-detail-card card-template"><h3>Director</h3><p id="director">${movie.director}</p></div>
+          <div class="movie-detail-card card-template"><h3>STARS</h3><p id="actors">${movie.actors}</p></div>
+          <div class="movie-detail-card card-template"><h3>Showtimes</h3><p id="showings">${movie.showings.join('<br>')}</p></div>
+        </div>
       `;
 
       let dayRadios = '';

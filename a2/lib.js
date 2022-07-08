@@ -117,14 +117,19 @@ export const prices = {
 export function updatePrices(isChecked) {
   if (isChecked) {
     for (let code in prices) {
-      document.getElementById(code).innerHTML =
-        prices[code].name + ' (' + code + ') ' + prices[code].discounted;
+      document.getElementById(
+        code
+      ).innerHTML = `${prices[code].name} (${code})<br><span style="font-size:1.5em">$${prices[code].discounted}</span>`;
     }
+    document.getElementById('discount-notice').innerHTML =
+      'Discounts only apply to 12pm weekday matinée sessions, and all day Monday.';
   } else {
     for (let code in prices) {
-      document.getElementById(code).innerHTML =
-        prices[code].name + ' (' + code + ') ' + prices[code].normal;
+      document.getElementById(
+        code
+      ).innerHTML = `${prices[code].name} (${code})<br><span style="font-size:1.5em">$${prices[code].normal}</span>`;
     }
+    document.getElementById('discount-notice').innerHTML = '';
   }
 }
 

@@ -5,6 +5,7 @@
 html {
   --nav-bar-height: 2em;
   --primary-color: #2c3c46;
+  --primary-color-light: hsl(203, 23%, 25%);
   --highlight-color: #d1b800;
   --light-text-color: rgb(230, 230, 230);
   scroll-behavior: smooth;
@@ -24,8 +25,9 @@ h1,
 h2,
 h3 {
   display: inline;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Gruppo', sans-serif;
   color: var(--light-text-color);
+  text-transform: uppercase;
 }
 
 p {
@@ -90,7 +92,7 @@ input[type='checkbox']:checked + .btn,
   justify-content: center;
   align-items: center;
   padding: 0 2.5%;
-  border: 1px solid var(--highlight-color);
+  border: 2px solid var(--highlight-color);
   border-radius: clamp(0.5em, 1vw, 0.5vh);
   margin: clamp(0.5em, 1vw, 0.5vh);
 }
@@ -121,23 +123,28 @@ main section {
     url('../../media/theater-bg.png');
   background-size: cover;
   background-position: bottom;
+  font-size: 1.5em;
+  text-align: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 /* 
   * HOMEPAGE SEAT SECTION STYLES
 */
-
 #show-discounted-prices-label {
-  float: right;
-  margin-top: 0.25em;
+  display: block;
+  float: none;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 #seat-cards {
-  margin-top: 1em;
   clear: both;
 }
 
 .seat-card {
+  background-color: var(--primary-color-light);
   width: clamp(250px, 90%, 375px);
   flex-direction: column;
 }
@@ -149,10 +156,6 @@ main section {
 /* 
   * HOMEPAGE MOVIES SECTION STYLES
 */
-
-#movie-cards {
-  margin-top: 1em;
-}
 
 /*
   * ********** UNIVERSAL SECTION STYLES **********
@@ -221,7 +224,7 @@ nav a {
   line-height: 9vmin;
   font-family: 'Montserrat', sans-serif;
 
-  border: 1px solid var(--highlight-color);
+  border: 2px solid var(--highlight-color);
   border-radius: 5vmin;
   background-color: var(--highlight-color);
 }
@@ -232,6 +235,7 @@ nav a {
 
 .contact-card {
   width: clamp(250px, 90%, 375px);
+  border: none;
 }
 
 #footer-copyright {
@@ -278,11 +282,6 @@ nav a {
   #home-icon {
     height: 4em;
   }
-
-  #show-discounted-prices-label {
-    display: block;
-    float: none;
-  }
 }
 
 /* Medium+ screens get row card styles */
@@ -291,5 +290,88 @@ nav a {
   #contact-cards {
     flex-flow: row nowrap;
     justify-content: space-evenly;
+  }
+
+  #show-discounted-prices-label {
+    float: right;
+    margin-top: 0.25em;
+  }
+}
+
+/* 
+  * BOOKING PAGE STYLES
+*/
+
+#movie-info-heading {
+  display: block;
+  width: 100%;
+}
+
+#rating,
+#name {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+#movie-media-container {
+  padding: 1em;
+}
+
+#booking-poster {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+#trailer {
+  width: 100%;
+  max-width: 1500px;
+  aspect-ratio: 16 / 9;
+}
+
+.movie-detail-card {
+  width: clamp(250px, 90%, 375px);
+  border: none;
+  flex-flow: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#movie-detail-cards {
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+.movie-detail-card > h3 {
+  padding: 0;
+  margin: 0;
+}
+
+@media only screen and (max-width: 318px) {
+  .movie-detail-card {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  #trailer-container {
+    float: left;
+    width: calc(100% * 1296 / 1796);
+  }
+
+  #booking-poster {
+    float: left;
+    width: calc(100% * 500 / 1796);
+  }
+
+  #synopsis {
+    clear: both;
+  }
+
+  #movie-detail-cards {
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
   }
 }

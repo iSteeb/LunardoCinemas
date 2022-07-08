@@ -28,21 +28,16 @@
 
     <main>
       <section id="about">
-        <h2>about</h2>
-        <p>The client wants to target not only their loyal customer from before, but also local cinema goers who would normally drive to modern cinemas in nearby larger towns.
-This area should tell customers these things:<br>
-* The cinema has reopened after extensive improvements and renovations.<br>
-* There are new seats: standard seats and reclinable first class seats<br>
-* The projection and sound systems are upgraded with 3D Dolby Vision projection and Dolby Atmos sound.<br>
-* See https://professional.<wbr>dolby.com/cinema/ (Links to an external site.) and https://professional.<wbr>dolby.com/cinema/dolby-atmos (Links to an external site.) and http://www.dolby.com/us<wbr>/en/platforms/dolby-cinema.html for more information. (Links to an external site.)</p>
+        <p>WE ARE BACK</p>
+        <p>Bigger and better than ever, after extensive renovations we are excited to be re-opening and bringing you all of our improvements and new technology!  Enjoy our brand new powered reclinable first class seats, listen to the breathtaking sound of <a href="https://professional.dolby.com/cinema/dolby-atmos" target="_blank">Dolby Atmos</a> and revel in the astonishing quality and realism of our <a href="https://professional.dolby.com/cinema/" target="_blank">3D Dolby Vision</a> screens!</p>
       </section>
 
       <section id="seats">
-        <h2>seats</h2>
+        <h2>Seats & Pricing</h2>
         
         <input id='show-discounted-prices-checkbox' type="checkbox" name="show-discounted-prices-checkbox" checked/>
+        <!-- checkbox is initially checked because cheaper prices will draw people in! -->
         <label class='btn' id='show-discounted-prices-label' for='show-discounted-prices-checkbox'>Show discount</label>
-                
         <div id="seat-cards" class="card-container">
           <div id="standard-seating" class="seat-card card-template">
             <img src="../../media/Profern-Standard-Twin.png" alt="Image of standard seating option (Profern Standard Twin)" />
@@ -51,7 +46,6 @@ This area should tell customers these things:<br>
             <p id="STC"></p>
           </div>
 
-
           <div id="first-class-seating" class="seat-card card-template">
             <img src="../../media/Profern-Verona-Twin.png" alt="Image of first class seating option (Profern Verona Twin)" />
             <p id="FCA"></p>
@@ -59,19 +53,22 @@ This area should tell customers these things:<br>
             <p id="FCC"></p>
           </div>
         </div>
+        
+        <p id='discount-notice' style='text-align:center; display:block'></p>
+
       </section>
 
       <section id="showing">
-        <h2>showing</h2>
+        <h2>Now Showing</h2>
         <div id="movie-cards" class="card-container"></div>
       </section>
     </main>
 
     <footer>
       <div id="contact-cards" class="card-container">
-        <div class="contact-card card-template"><p>Email:<br>enquiries@lunardo.com.au</p></div>
-        <div class="contact-card card-template"><p>Phone:<br>(02) 6174 4290</p></div>
-        <div class="contact-card card-template"><p>Address:<br>30/33 Hibberson St, Gungahlin</p></div>
+        <div class="contact-card card-template"><p><b>EMAIL</b><br>enquiries@lunardo.com.au</p></div>
+        <div class="contact-card card-template"><p><b>PHONE</b><br>(02) 6174 4290</p></div>
+        <div class="contact-card card-template"><p><b>ADDRESS</b><br>30/33 Hibberson St, Gungahlin</p></div>
       </div>
       <div id="footer-copyright">
         <p>&copy; <script>document.write(new Date().getFullYear());</script> Steven Duzevich (s3963525) | Last modified <?= date ("Y F d  H:i", filemtime($_SERVER["SCRIPT_FILENAME"])); ?> | <a href="//github.com/isteeb/wp" target="_blank">GitHub Repo</a></p>
