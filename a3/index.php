@@ -41,8 +41,9 @@
     <p id='discount-notice' style='text-align:center; display:block'></p>
 
     <script type=module>
-      import { initPrices } from './lib.js';
-      initPrices();
+      import { initPrices } from './script.js';
+      var prices = <?php echo json_encode($pricesArray) ?>;
+      initPrices(prices);
     </script>
   </section>
 
@@ -50,30 +51,17 @@
     <h2>Now Showing</h2>
     <div id="movie-cards" class="card-container"></div>
     <script type=module>
-      import { initMovies } from './lib.js';
-      initMovies();
+      import { initMovies } from './script.js';
+      // import PHP stored movies data object and then render sections with it
+      var movies = <?php echo json_encode($moviesArray) ?>;
+      initMovies(movies);
     </script>
   </section>
 </main>
 
-<script defer>
-  window.addEventListener('scroll', function () {
-    var sectionLinks = document.querySelectorAll('.section-link');
-
-    sectionLinks.forEach(link => {
-      const href = link.getAttribute('href').split('#')[1];
-      const height = document.getElementById(href).getBoundingClientRect().bottom - document.getElementById(href).getBoundingClientRect().top;
-
-      const scrollPaddingTop = window.getComputedStyle(document.querySelector('html')).getPropertyValue('scroll-padding-top').split('px')[0];
-
-
-      if (window.scrollY >= document.getElementById(href).offsetTop - scrollPaddingTop && window.scrollY < document.getElementById(href).offsetTop + height - scrollPaddingTop) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  });
+<script type=module>
+  import { initNavHighlighter } from './script.js';
+  initNavHighlighter();
 </script>
 
 <?php echo bottom_module(); ?>

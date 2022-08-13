@@ -1,5 +1,6 @@
 <?php 
   require_once 'tools.php';
+
   echo top_module("Lunardo Booking Page");
 ?>
 
@@ -14,10 +15,14 @@
 </main>
 
 <script type=module>
-  import { initMovieDetails } from './lib.js';
+  import { initMovieDetails } from './script.js';
 
   const $_GET = <?php echo json_encode($_GET); ?>;
-  initMovieDetails($_GET);
+  // import PHP stored movies data object and then render sections with it
+  var movies = <?php echo json_encode($moviesArray) ?>;
+  var prices = <?php echo json_encode($pricesArray) ?>;
+
+  initMovieDetails($_GET, movies, prices);
 </script>
 
 <aside id="debug">
