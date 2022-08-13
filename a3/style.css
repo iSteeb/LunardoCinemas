@@ -215,7 +215,8 @@ nav a.current {
 }
 
 .active {
-  text-decoration: overline;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 #home-icon {
