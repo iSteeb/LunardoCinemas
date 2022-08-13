@@ -58,14 +58,16 @@
 
 <script defer>
   window.addEventListener('scroll', function () {
-
-
     var sectionLinks = document.querySelectorAll('.section-link');
 
     sectionLinks.forEach(link => {
-      var href = link.getAttribute('href').split('#')[1];
-      var sectionBoundingBox = document.getElementById(href).getBoundingClientRect();
-      if (window.scrollY > sectionBoundingBox.top && window.scrollY <= sectionBoundingBox.bottom) {
+      const href = link.getAttribute('href').split('#')[1];
+      const height = document.getElementById(href).getBoundingClientRect().bottom - document.getElementById(href).getBoundingClientRect().top;
+
+      const scrollPaddingTop = window.getComputedStyle(document.querySelector('html')).getPropertyValue('scroll-padding-top').split('px')[0];
+
+
+      if (window.scrollY >= document.getElementById(href).offsetTop - scrollPaddingTop && window.scrollY < document.getElementById(href).offsetTop + height - scrollPaddingTop) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');

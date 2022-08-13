@@ -54,4 +54,9 @@ OUTPUT;
   echo $html;
 }
 
+// In the previous assignment you hardcoded one movie's information into the booking page, this information must change depending on the value of the variable $_GET['movie'] which is supplied in the url.
+// If the value of $_GET['movie'] is missing or is invalid, eg "XYZ", then the booking page must instantly redirect the user back to the index page using PHP's header() function.
+// The form must adapt using information stored server side to match the client's screening days and times, full and discount pricing etc. This includes pre-filling the hidden movie field value and the data attributes in the form.
+
+
 ?>
