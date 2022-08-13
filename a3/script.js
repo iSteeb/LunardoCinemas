@@ -50,8 +50,6 @@ function seatsSelectedCheck() {
 }
 
 export function formValidate(event) {
-  var allErrors = document.getElementsByClassName('error');
-
   var countErrors = 0;
 
   if (!nameCheck()) countErrors++;

@@ -1,11 +1,15 @@
 <?php
   session_start();
-  
-/* Put your PHP functions and modules here.
+
+  /* Put your PHP functions and modules here.
    Many will be provided in the teaching materials,
    keep a look out for them!
 */
 
+// prices and movie data are stored in the PHP arrays as per assignment specification
+// however Javascript is more powerful in rendering pages dynamically, so whilst the
+// data is stored server-side in PHP, it is passed to the Javascript as JSON.
+// nonetheless, the PHP storage is essential for the client-side functions to work.
 $pricesArray = [
    "STA" => [
          "name" => "Standard Adult", 
@@ -109,7 +113,18 @@ $pricesArray = [
                           ] 
   ];
  
+  function isDiscounted($session) {
+  if (str_contains($session, 'Mon')) return true;
+  if (
+    str_contains($session, '12pm') &&
+    !str_contains($session, 'Sat') &&
+    !str_contains($session, 'Sun')
+  )
+    return true;
+  return false;
+  }
 
+  // redirect to homepage from booking page if movie code invalid
   if(basename($_SERVER['PHP_SELF']) == 'booking.php' && (count($_GET) <= 0 || !array_key_exists($_GET['movie'], $moviesArray))) {
     header("Location: index.php");
   }
