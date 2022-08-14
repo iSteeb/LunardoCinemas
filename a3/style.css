@@ -426,6 +426,35 @@ select {
   appearance: none;
 }
 
+/* 
+  * RECEIPT PAGE STYLES
+*/
+
+#receipt {
+  page-break-after: always;
+}
+
+.ticket {
+  width: calc(100% - 6em);
+  max-width: 400px;
+  border: 2px solid var(--light-text-color);
+  border-radius: clamp(0.5em, 1vw, 0.5vh);
+  page-break-inside: avoid;
+  margin: 2em;
+  padding: 1em;
+}
+
+.ticket-inner {
+  background-color: rgb(230, 230, 230);
+  border-radius: clamp(0.5em, 1vw, 0.5vh);
+
+  opacity: 90%;
+  margin: 1em;
+  padding: 1em;
+  width: calc(100% - 4em);
+  height: calc(100% - 4em);
+}
+
 @media only screen and (max-width: 318px) {
   .movie-detail-card {
     width: 90%;
@@ -459,5 +488,11 @@ select {
     display: inline;
     margin: 1em 2em 2em 0;
     width: calc((90% - 2em) / 7);
+  }
+}
+
+@media print {
+  .noprint {
+    visibility: hidden;
   }
 }

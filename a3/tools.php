@@ -174,7 +174,7 @@ $pricesArray = [
         </div>
       </footer>
 
-      <aside id="debug">
+      <aside class='noprint' id="debug">
         <hr>
         <h3>Debug Area</h3>
         <pre>

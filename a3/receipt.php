@@ -10,10 +10,14 @@
     --light-text-color: #000 !important;
   }
 </style>
-<?php print_r($_SESSION['Booking']); ?>
+<div id='receipt'></div>
+<div id='tickets'></div>
+  <script type=module>
+    import { initReceipt } from './receiptGenerator.js';
+    // import PHP stored booking data object and then render sections with it
+    var booking = <?php echo json_encode($_SESSION['Booking']) ?>;
+    var movies = <?php echo json_encode($moviesArray) ?>;
+
+    initReceipt(booking, movies);
+  </script>
 <?php echo bottom_module(); ?>
-<!-- 
-* Structured list or table with order itemised as number of seats, which types of seat, seat sub-totals and total with a single GST entry showing.
-A page break should following the receipt to separate the ticket(s) from the receipt. Tip: look up "page-break-after: always" for more information.
-The ticket(s) can either be a group ticket for the party (ie all seats listed on one ticket) for partial marks OR individual tickets for each seat holder for full marks. 
-The tickets should be styled to a high standard and they should not break across pages, Tip: look up "page-break-inside: avoid" for more information. -->
