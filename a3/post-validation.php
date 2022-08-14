@@ -30,23 +30,24 @@
     $_SESSION['Booking']['Day of Movie'] = substr($_POST['day'], 0, 3);
     $_SESSION['Booking']['Time of Movie'] = explode(' ', $_POST['day'])[1];
     $_SESSION['Booking']['#STA'] = $_POST['seats']['STA'];    
-    $_SESSION['Booking']['$STA'] = getPrice($_POST['day'], 'STA') * $_SESSION['Booking']['#STA'];
+    $_SESSION['Booking']['$STA'] = getPrice($_POST['day'], 'STA') * ($_SESSION['Booking']['#STA'] != '') ? $_SESSION['Booking']['#STA'] : 0;
     $_SESSION['Booking']['#STP'] = $_POST['seats']['STP'];
-    $_SESSION['Booking']['$STP'] = getPrice($_POST['day'], 'STP') * $_SESSION['Booking']['#STP'];
+    $_SESSION['Booking']['$STP'] = getPrice($_POST['day'], 'STP') * ($_SESSION['Booking']['#STP'] != '') ? $_SESSION['Booking']['#STP'] : 0;
     $_SESSION['Booking']['#STC'] = $_POST['seats']['STC'];
-    $_SESSION['Booking']['$STC'] = getPrice($_POST['day'], 'STC') * $_SESSION['Booking']['#STC'];
+    $_SESSION['Booking']['$STC'] = getPrice($_POST['day'], 'STC') * ($_SESSION['Booking']['#STC'] != '') ? $_SESSION['Booking']['#STC'] : 0;
     $_SESSION['Booking']['#FCA'] = $_POST['seats']['FCA'];
-    $_SESSION['Booking']['$FCA'] = getPrice($_POST['day'], 'FCA') * $_SESSION['Booking']['#FCA'];
+    $_SESSION['Booking']['$FCA'] = getPrice($_POST['day'], 'FCA') * ($_SESSION['Booking']['#FCA'] != '') ? $_SESSION['Booking']['#FCA'] : 0;
     $_SESSION['Booking']['#FCP'] = $_POST['seats']['FCP'];
-    $_SESSION['Booking']['$FCP'] = getPrice($_POST['day'], 'FCP') * $_SESSION['Booking']['#FCP'];
+    $_SESSION['Booking']['$FCP'] = getPrice($_POST['day'], 'FCP') * ($_SESSION['Booking']['#FCP'] != '') ? $_SESSION['Booking']['#FCP'] : 0;
     $_SESSION['Booking']['#FCC'] = $_POST['seats']['FCC'];
-    $_SESSION['Booking']['$FCC'] = getPrice($_POST['day'], 'FCC') * $_SESSION['Booking']['#FCC'];
+    $_SESSION['Booking']['$FCC'] = getPrice($_POST['day'], 'FCC') * ($_SESSION['Booking']['#FCC'] != '') ? $_SESSION['Booking']['#FCC'] : 0;
     $_SESSION['Booking']['Total'] = round($_SESSION['Booking']['$STA'] + $_SESSION['Booking']['$STP'] + $_SESSION['Booking']['$STC'] + $_SESSION['Booking']['$FCA'] + $_SESSION['Booking']['$FCP'] + $_SESSION['Booking']['$FCC'], 2);
     $_SESSION['Booking']['GST'] = round($_SESSION['Booking']['Total']/11, 2);
 
     $file = fopen('bookings.txt', 'a');
     fputcsv($file, $_SESSION['Booking']);
-    //header("Location: receipt.php");
+    fclose($file);
+    header("Location: receipt.php");
   }
 
 
