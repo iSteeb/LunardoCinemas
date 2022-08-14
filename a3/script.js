@@ -13,7 +13,7 @@ function nameCheck() {
     getid('nameError').innerText = '';
     return true;
   } else {
-    getid('nameError').innerText = 'Sorry, your name must be valid.';
+    getid('nameError').innerText = 'Please provide a valid name.';
     return false;
   }
 }
@@ -30,7 +30,7 @@ function mobileCheck() {
     return true;
   } else {
     getid('mobileError').innerText =
-      'Sorry, you must provide a valid Australian mobile number.';
+      'Please provide a valid Australian mobile number.';
     return false;
   }
 }
@@ -279,9 +279,9 @@ export function initMovieDetails($_GET, movies, prices) {
           ${dayRadios}
           <h3>Add seats</h3>
           ${seatSelects}
+          <h2 id='booking-price'></h2>
           <input id="submit" class='btn' type='submit' value="submit" />
           <label class='btn' for='submit'>Submit</label>
-          <h3 id='booking-price'></p>
           <p class='error' id='selectionError'></p>
         </form>
       `;
