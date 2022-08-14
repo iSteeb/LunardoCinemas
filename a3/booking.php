@@ -1,9 +1,14 @@
 <?php 
   require_once 'post-validation.php';
   require_once 'tools.php';
-
   echo top_module("Lunardo Booking Page");
 
+  // redirect to homepage from booking page if movie code invalid
+  if((count($_GET) <= 0 || !array_key_exists($_GET['movie'], $moviesArray))) {
+    header("Location: index.php");
+  }
+
+  // validate a booking and send it to the server if valid
   $fieldErrors = validateBooking();
 
   if (false) { // TODO: need better error handling

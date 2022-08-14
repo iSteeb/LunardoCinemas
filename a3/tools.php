@@ -132,11 +132,6 @@ $pricesArray = [
     }
   }
 
-  // redirect to homepage from booking page if movie code invalid
-  if(basename($_SERVER['PHP_SELF']) == 'booking.php' && (count($_GET) <= 0 || !array_key_exists($_GET['movie'], $moviesArray))) {
-    header("Location: index.php");
-  }
-
   function top_module($pageTitle) {
     $html = <<<"OUTPUT"
   <!DOCTYPE html>
