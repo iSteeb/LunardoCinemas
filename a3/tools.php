@@ -140,17 +140,16 @@ $pricesArray = [
       
       <!-- Keep wireframe.css for debugging, add your css to style.css -->
       <link id="wireframecss" type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
-      <link id='stylecss' type="text/css" rel="stylesheet" href="style.css?t=<?= filemtime("style.css"); ?>">
-      <link id='stylecss' type="text/css" rel="stylesheet" href="flipCardStyle.css?t=<?= filemtime("flipCardStyle.css"); ?>">
+      <link id='stylecss' type='text/css' rel='stylesheet' href='style.css?t=<?= filemtime("style.css"); ?>'>
+      <link id='stylecss' type='text/css' rel='stylesheet' href='flipCardStyle.css?t=<?= filemtime("flipCardStyle.css"); ?>'>
 
       <script src="../wireframe.js"></script>
     </head>
 
     <body>
 
-      <?php header(); ?>
       <header id="top">
-        <img id="logo" src="../../media/logo.png" alt="Lunardo logo" />
+        <a href='index.php'><img id="logo" src="../../media/logo.png" alt="Lunardo logo" /></a>
         <h1 id="title">Lunardo</h1>
       </header>
   OUTPUT;
@@ -158,6 +157,7 @@ $pricesArray = [
   }
 
   function bottom_module() {
+    $print_r = 'print_r';
     $html = <<<"OUTPUT"
       <footer>
         <div id="contact-cards" class="card-container">
@@ -170,9 +170,22 @@ $pricesArray = [
           <p>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</p>
         </div>
       </footer>
+
+      <aside id="debug">
+        <hr>
+        <h3>Debug Area</h3>
+        <pre>
+          GET Contains:
+          {$print_r($_GET, true)}
+          POST Contains:
+          {$print_r($_POST, true)}
+          SESSION Contains:
+          {$print_r($_SESSION, true)}
+        </pre>
+      </aside>
+
     </body>
   </html>
-  }
   OUTPUT;
     echo $html;
   }

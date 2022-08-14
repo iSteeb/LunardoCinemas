@@ -35,4 +35,9 @@
 // 2. Check ALL user text based fields, including email, for valid string data using functions filter_var(), preg_match() etc. 
 // If these errors occur, stay on the booking page as this could be an honest user with browser limitations, pre-fill the text based field values and hidden field values with $_POST data, and re-select the day and seat quantities that match the $_POST data.
 // If all the data is valid, add the user's $_POST data to the $_SESSION and redirect the user to a new page called receipt.php using the PHP header() function.
+
+// When the booking is added to the session, the order should also be appended to a spreadsheet called bookings.txt using PHP's fputcsv() function.
+// Order Date, Name, Email, Mobile, Movie Code, Day of Movie, Time of Movie, #STA, $STA, #STP, $STP, #STC, $STC, #FCA, $FCA, #FCP, $FCP, #FCC, $FCC, Total, GST
+
+
 ?>
