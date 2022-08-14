@@ -21,8 +21,8 @@
   }
 
   function sendBooking() {
-    // When the booking is added to the session, the order should also be appended to a spreadsheet called bookings.txt using PHP's fputcsv() function.
-    $_SESSION['Booking']['Order Date'] = date("d/m/Y H:ia"); // TODO: SET TIMEZONE?
+    date_default_timezone_set('Australia/Sydney');
+    $_SESSION['Booking']['Order Date'] = date("d/m/Y H:i");
     $_SESSION['Booking']['Name'] = $_POST['user']['name'];
     $_SESSION['Booking']['Email'] = $_POST['user']['email'];
     $_SESSION['Booking']['Mobile'] = $_POST['user']['mobile'];

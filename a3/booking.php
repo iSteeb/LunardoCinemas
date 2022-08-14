@@ -8,14 +8,17 @@
     header("Location: index.php");
   }
 
-  // validate a booking and send it to the server if valid
-  $fieldErrors = validateBooking();
+  // if a form has been submitted, validate its data and send it to the server if valid
+  if (count($_POST) > 0) {
+    $fieldErrors = validateBooking();
 
-  if (false) { // TODO: need better error handling
-    header("Location: index.php"); 
-  } else {
-    sendBooking();
+    if (count($fieldErrors) == 0) {
+      sendBooking();
+    } else {
+      header("Location: index.php"); 
+    }
   }
+
 ?>
 
 <nav>
