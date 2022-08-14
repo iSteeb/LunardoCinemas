@@ -194,10 +194,9 @@ $pricesArray = [
   }
 
   // titan seems to be running an older version of PHP that doesn't have the str_contains function
-  // PHP docs recommend below as solution (https://www.php.net/manual/en/function.str-contains.php)
   if (!function_exists('str_contains')) {
     function str_contains($haystack, $needle) {
-        return $needle !== '' && mb_strpos($haystack, $needle) !== false;
+        return strpos($haystack, $needle) !== false;
     }
 }
 
