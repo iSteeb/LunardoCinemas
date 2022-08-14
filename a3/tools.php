@@ -114,14 +114,22 @@ $pricesArray = [
   ];
  
   function isDiscounted($session) {
-  if (str_contains($session, 'Mon')) return true;
+  if (str_contains($session, 'MON')) return true;
   if (
     str_contains($session, '12pm') &&
-    !str_contains($session, 'Sat') &&
-    !str_contains($session, 'Sun')
+    !str_contains($session, 'SAT') &&
+    !str_contains($session, 'SUN')
   )
     return true;
   return false;
+  }
+
+   function getPrice($session, $type) {
+    if (isDiscounted($session)) {
+      return $GLOBALS['pricesArray'][$type]['discounted'];
+    } else {
+      return $GLOBALS['pricesArray'][$type]['normal'];
+    }
   }
 
   // redirect to homepage from booking page if movie code invalid

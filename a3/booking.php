@@ -3,6 +3,14 @@
   require_once 'tools.php';
 
   echo top_module("Lunardo Booking Page");
+
+  $fieldErrors = validateBooking();
+
+  if (false) { // TODO: need better error handling
+    header("Location: index.php"); 
+  } else {
+    sendBooking();
+  }
 ?>
 
 <nav>

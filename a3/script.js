@@ -229,9 +229,7 @@ export function initMovieDetails($_GET, movies, prices) {
     dayRadios += `
           <input class='price-variable-input' type="radio" name="day" value="${movie.showings[
             i
-          ]
-            .substr(0, 3)
-            .toUpperCase()}" id="day-${i}" ${
+          ].toUpperCase()}" id="day-${i}" ${
       i === 0 ? 'checked' : ''
     } data-pricing="${
       isDiscounted(movie.showings[i]) ? 'discprice' : 'fullprice'
