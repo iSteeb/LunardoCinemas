@@ -59,7 +59,7 @@
     // $file = fopen('bookings.txt', 'a');
     // fputcsv($file, $_SESSION['Booking']);
     // fclose($file);
-    if( ($fp = fopen('/home/sl5/S3963525/public_html/wp/a3', "a")) && flock($fp, LOCK_EX) !== false ) {;
+    if( ($fp = fopen('/home/sl5/S3963525/public_html/wp/a3/bookings.txt', "a")) && flock($fp, LOCK_EX) !== false ) {;
       fputcsv($fp, $_SESSION['Booking']);
       flock($fp, LOCK_UN);
       fclose($fp);
