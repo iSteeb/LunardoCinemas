@@ -10,7 +10,7 @@ function nameCheck() {
   var name = getid('booking-name-field').value;
   var patt = /^[a-zA-Z ,.'-]+$/;
   if (patt.test(name)) {
-    getid('nameError').innerText = '';
+    getid('nameError').replaceChildren();
     return true;
   } else {
     getid('nameError').innerText = 'Please provide a valid name.';
@@ -26,7 +26,7 @@ function mobileCheck() {
   var number = getid('booking-mobile-field').value;
   var patt = /^0 ?4 ?([0-9] ?){8}$/;
   if (patt.test(number)) {
-    getid('mobileError').innerText = '';
+    getid('mobileError').replaceChildren();
     return true;
   } else {
     getid('mobileError').innerText =
@@ -40,7 +40,7 @@ function mobileCheck() {
 function seatsSelectedCheck() {
   var price = getid('booking-price').innerText;
   if (price.length >= 5) {
-    getid('selectionError').innerText = '';
+    getid('selectionError').replaceChildren();
     return true;
   } else {
     getid('selectionError').innerText =
