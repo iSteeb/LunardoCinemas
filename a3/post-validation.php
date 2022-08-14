@@ -56,9 +56,14 @@
     $_SESSION['Booking']['Total'] = round($_SESSION['Booking']['$STA'] + $_SESSION['Booking']['$STP'] + $_SESSION['Booking']['$STC'] + $_SESSION['Booking']['$FCA'] + $_SESSION['Booking']['$FCP'] + $_SESSION['Booking']['$FCC'], 2);
     $_SESSION['Booking']['GST'] = round($_SESSION['Booking']['Total']/11, 2);
 
-    $file = fopen('../bookings.txt', 'a');
-    fputcsv($file, $_SESSION['Booking']);
-    fclose($file);
+    // $file = fopen('bookings.txt', 'a');
+    // fputcsv($file, $_SESSION['Booking']);
+    // fclose($file);
+    if( ($fp = fopen('bookings.txt', "a")) && flock($fp, LOCK_EX) !== false ) {;
+      fputcsv($fp, $_SESSION['Booking']);
+      flock($fp, LOCK_UN);
+      fclose($fp);
+    }
     header("Location: receipt.php");
   }
 
