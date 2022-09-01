@@ -1,5 +1,6 @@
 /* Insert your javascript here */
 
+// set the localstorage items to save customer form data
 function saveDetails() {
   localStorage.setItem(
     'name',
@@ -13,6 +14,18 @@ function saveDetails() {
     'mobile',
     document.getElementById('booking-mobile-field').value
   );
+}
+
+function clearDetails() {
+  localStorage.removeItem('name');
+  localStorage.removeItem('email');
+  localStorage.removeItem('mobile');
+  const nameField = document.getElementById('booking-name-field');
+  const mobileField = document.getElementById('booking-mobile-field');
+  const emailField = document.getElementById('booking-email-field');
+  nameField.value = '';
+  mobileField.value = '';
+  emailField.value = '';
 }
 
 // get the element with the id of 'id' helper function
@@ -305,6 +318,7 @@ export function initMovieDetails($_GET, movies, prices) {
         </form>
       `;
 
+  // initialise the remember me checkbox (or retrieve it's previous state from localstorage if available)
   const rememberMeBox = document.getElementById('remember-me');
 
   if (localStorage.getItem('rememberMe') === null) {
@@ -316,32 +330,28 @@ export function initMovieDetails($_GET, movies, prices) {
     rememberMeBox.checked = false;
   }
 
+  // listen to changes on the remember me checkbox and update localstorage accordingly
+  // if the checkbox is un-set, clear the customer data
   rememberMeBox.addEventListener('change', (event) => {
     if (event.target.checked) {
       localStorage.setItem('rememberMe', 'true');
     } else {
       localStorage.setItem('rememberMe', 'false');
-      localStorage.removeItem('name');
-      localStorage.removeItem('email');
-      localStorage.removeItem('mobile');
-      const nameField = document.getElementById('booking-name-field');
-      const mobileField = document.getElementById('booking-mobile-field');
-      const emailField = document.getElementById('booking-email-field');
-      nameField.value = '';
-      mobileField.value = '';
-      emailField.value = '';
+      clearDetails();
     }
     setRememberMeLabel();
   });
 
   const rememberMeLabel = document.getElementById('remember-me-label');
 
+  // toggle the remember me label to reflect the current state of the checkbox (label indicates the action to be taken when clicked)
   function setRememberMeLabel() {
     rememberMeLabel.innerHTML = rememberMeBox.checked
       ? 'Forget me'
       : 'Remember me';
   }
 
+  // initialise the remember me label
   setRememberMeLabel();
 
   if (rememberMeBox.checked) {
