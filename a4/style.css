@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+html {
+  --nav-bar-height: 2em;
+  --primary-color: #2c3c46;
+  --primary-color-light: hsl(203, 23%, 25%);
+  --highlight-color: #d1b800;
+  --light-text-color: rgb(230, 230, 230);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-bar-height);
+}
+
+body {
+  background-color: var(--primary-color);
+  padding: 2.5%;
+  margin: auto;
+  overflow-x: hidden;
+  max-width: 1500px;
+  font-family: 'Gruppo', sans-seri;
+}
+
+h1,
+h2,
+h3 {
+  display: inline;
+  font-family: 'Gruppo', sans-serif;
+  color: var(--light-text-color);
+  text-transform: uppercase;
+}
+
+p,
+#debug {
+  color: var(--light-text-color);
+}
+
+a {
+  color: var(--white-text-color);
+  text-decoration: underline;
+}
+
+.btn {
+  cursor: pointer;
+  border: 1px solid var(--highlight-color);
+  color: var(--highlight-color);
+  font-size: 1em;
+  line-height: 1.6em;
+  padding: 0 1em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  position: relative;
+  top: 0;
+  transition: all 300ms ease-in-out;
+  box-shadow: 0 0.6em #625f1d, 0 0.9em rgba(0, 0, 0, 0.4);
+}
+
+input[type='radio'],
+input[type='checkbox'],
+input[type='submit'] {
+  display: none;
+}
+
+input[type='radio']:hover + .btn,
+input[type='checkbox']:hover + .btn,
+input:checked:hover + .btn,
+.btn:hover {
+  background: var(--highlight-color);
+  color: var(--primary-color);
+}
+
+input[type='radio']:checked + .btn,
+input[type='checkbox']:checked + .btn,
+.btn:active {
+  top: 0.6em;
+  box-shadow: 0 0.2em rgba(0, 0, 0, 0.4);
+}
+
+/* 
+  * CARD STYLES
+*/
+
+.card-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.card-template {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2.5%;
+  border: 2px solid var(--highlight-color);
+  border-radius: clamp(0.5em, 1vw, 0.5vh);
+  margin: clamp(0.5em, 1vw, 0.5vh);
+}
+
+/* 
+  * ********** SECTION STYLES **********
+*/
+
+main section {
+  min-height: calc(100vh - var(--nav-bar-height));
+  /* I interpreted the assignment spec to want each section 
+     to take up a minimum 100% of the visible area as opposed
+     to the actual view height (which would add an off-screen
+     tail due to the space taken up by the nav bar.  This calc
+     seems more stylisically desirable.  Apologies if wrong! */
+}
+
+/* 
+  * HOMEPAGE ABOUT SECTION STYLES
+*/
+
+#about {
+  background-image: radial-gradient(
+      ellipse closest-side at center,
+      transparent 0%,
+      var(--primary-color) 100%
+    ),
+    url('../../media/theater-bg.png');
+  background-size: cover;
+  background-position: bottom;
+  font-size: 1.5em;
+  text-align: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+/* 
+  * HOMEPAGE SEAT SECTION STYLES
+*/
+#show-discounted-prices-label {
+  display: block;
+  float: none;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#seat-cards {
+  clear: both;
+}
+
+.seat-card {
+  background-color: var(--primary-color-light);
+  width: clamp(250px, 90%, 375px);
+  flex-direction: column;
+}
+
+.seat-card img {
+  width: 80%;
+}
+
+/* 
+  * HOMEPAGE MOVIES SECTION STYLES
+*/
+
+/*
+  * ********** UNIVERSAL SECTION STYLES **********
+*/
+
+/* 
+  *  HEADER SECTION STYLES
+*/
+
+header {
+  white-space: nowrap;
+}
+
+#logo {
+  height: clamp(1em, 12vw, 7vh);
+}
+
+#title {
+  display: inline;
+  color: var(--highlight-color);
+  font-family: 'Monoton', fantasy;
+  font-size: clamp(1em, 12vw, 7vh);
+  padding-left: clamp(0.1em, 0.12vw, 0.7vh);
+}
+
+/* 
+  * NAV SECTION STYLES
+*/
+
+nav {
+  position: sticky;
+  display: flex;
+  height: var(--nav-bar-height);
+  justify-content: space-evenly;
+  align-items: center;
+  top: 0;
+  background-color: var(--highlight-color);
+  z-index: 100;
+}
+
+nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 100%;
+  text-transform: uppercase;
+}
+
+.section-link:hover,
+.section-link:focus {
+  text-decoration: underline;
+}
+
+nav a.current {
+  color: red;
+  transition: 0.3s;
+}
+
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#home-icon {
+  display: block;
+  height: 1.5em;
+}
+
+#go-to-top-button {
+  display: none; /* Hide the button initially */
+
+  position: fixed;
+  transform: translate(-50%, -50%);
+  bottom: 0%;
+  right: 0%;
+  z-index: 100;
+  height: 10vmin;
+  width: 10vmin;
+
+  text-align: center;
+  font-size: 10vmin;
+  line-height: 9vmin;
+  font-family: 'Montserrat', sans-serif;
+
+  border: 2px solid var(--highlight-color);
+  border-radius: 5vmin;
+  background-color: var(--highlight-color);
+}
+
+/* 
+  * FOOTER SECTION STYLES
+*/
+
+.contact-card {
+  width: clamp(250px, 90%, 375px);
+  border: none;
+}
+
+#footer-copyright {
+  width: 100%;
+  text-align: center;
+}
+
+#footer-copyright p {
+  padding: 0;
+  margin: 0;
+  font-size: 0.75em;
+}
+
+/* 
+  * MEDIA QUERY STYLES
+*/
+
+/* Tiny (unreasonably small) - a failsafe style */
+@media only screen and (max-width: 318px) {
+  #logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-bottom: 2.5%;
+  }
+
+  #title {
+    display: none;
+  }
+
+  .contact-card,
+  .seat-card {
+    width: 90%;
+  }
+
+  html {
+    --nav-bar-height: 6em;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  #home-icon {
+    height: 4em;
+  }
+}
+
+/* Medium+ screens get row card styles */
+@media only screen and (min-width: 640px) {
+  #seat-cards,
+  #contact-cards {
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+  }
+
+  #show-discounted-prices-label {
+    float: right;
+    margin-top: 0.25em;
+  }
+}
+
+/* 
+  * BOOKING PAGE STYLES
+*/
+
+#movie-info-heading {
+  display: block;
+  width: 100%;
+}
+
+#name {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+#name > sub {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+#movie-media-container {
+  padding: 1em;
+}
+
+#booking-poster {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+#trailer {
+  width: 100%;
+  max-width: 1500px;
+  aspect-ratio: 16 / 9;
+}
+
+.movie-detail-card {
+  width: clamp(250px, 90%, 375px);
+  border: none;
+  flex-flow: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#movie-detail-cards {
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
+.movie-detail-card > h3 {
+  padding: 0;
+  margin: 0;
+}
+
+#book {
+  width: 100%;
+}
+
+#booking-form {
+  width: 100%;
+}
+
+.day-radio-label {
+  display: block;
+  margin: 1em 2em 2em 0;
+  width: calc(100% - 2em);
+}
+
+input[type='text'] {
+  display: block;
+  width: calc(100% - 2em);
+  height: 3em;
+  border: 1px solid var(--highlight-color);
+  background-color: var(--primary-color-light);
+  color: var(--light-text-color);
+  padding: 1em;
+  margin: 1em 0 1em 0;
+}
+
+#booking-form h3 {
+  display: block;
+}
+
+#booking-price {
+  display: block;
+}
+
+.error {
+  color: red;
+}
+
+.seat-selection-label {
+  color: var(--light-text-color);
+  display: block;
+}
+
+select {
+  display: block;
+  width: 100%;
+  height: 3em;
+  border: 1px solid var(--highlight-color);
+  padding-left: 1em;
+  margin: 1em 0 1em 0;
+  color: var(--light-text-color);
+  background-color: var(--primary-color-light);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  appearance: none;
+}
+
+/* 
+  * RECEIPT PAGE STYLES
+*/
+
+#receipt {
+  page-break-after: always;
+}
+
+.ticket {
+  width: calc(100% - 6em);
+  max-width: 400px;
+  border: 2px solid var(--light-text-color);
+  border-radius: clamp(0.5em, 1vw, 0.5vh);
+  page-break-inside: avoid;
+  margin: 2em;
+  padding: 1em;
+}
+
+.ticket-inner {
+  background-color: rgb(230, 230, 230);
+  border-radius: clamp(0.5em, 1vw, 0.5vh);
+
+  opacity: 90%;
+  margin: 1em;
+  padding: 1em;
+  width: calc(100% - 4em);
+  height: calc(100% - 4em);
+}
+
+@media only screen and (max-width: 318px) {
+  .movie-detail-card {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  #trailer-container {
+    float: left;
+    width: calc(100% * 1296 / 1796);
+  }
+
+  #booking-poster {
+    float: left;
+    width: calc(100% * 500 / 1796);
+  }
+
+  #synopsis {
+    clear: both;
+  }
+
+  #movie-detail-cards {
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .day-radio-label {
+    display: inline;
+    margin: 1em 2em 2em 0;
+    width: calc((90% - 2em) / 7);
+  }
+}
+
+@media print {
+  .noprint {
+    visibility: hidden;
+  }
+}
