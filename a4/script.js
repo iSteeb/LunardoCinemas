@@ -1,5 +1,20 @@
 /* Insert your javascript here */
 
+function saveDetails() {
+  localStorage.setItem(
+    'name',
+    document.getElementById('booking-name-field').value
+  );
+  localStorage.setItem(
+    'email',
+    document.getElementById('booking-email-field').value
+  );
+  localStorage.setItem(
+    'mobile',
+    document.getElementById('booking-mobile-field').value
+  );
+}
+
 // get the element with the id of 'id' helper function
 function getid(sP) {
   return document.getElementById(sP);
@@ -61,6 +76,10 @@ export function formValidate(event) {
   if (countErrors > 0) {
     event.preventDefault();
     return false;
+  }
+
+  if (localStorage.getItem('rememberMe') === 'true') {
+    saveDetails();
   }
 
   return true;
@@ -268,7 +287,7 @@ export function initMovieDetails($_GET, movies, prices) {
           <input type='text' id='booking-name-field' name='user[name]' value='' placeholder='name' required/>
           <p class='error' id='nameError'></p>
 
-          <input type='text' name='user[email]' value='' placeholder='email' required/>
+          <input type='text' id='booking-email-field' name='user[email]' value='' placeholder='email' required/>
 
           <input type='text' id='booking-mobile-field' name='user[mobile]' value='' placeholder='mobile' required />
           <p class='error' id='mobileError'></p>
@@ -278,11 +297,61 @@ export function initMovieDetails($_GET, movies, prices) {
           <h3>Add seats</h3>
           ${seatSelects}
           <h2 id='booking-price'></h2>
+          <input id="remember-me" class='btn' type='checkbox'/>
+          <label id="remember-me-label" class='btn' for='remember-me'></label>
           <input id="submit" class='btn' type='submit' value="submit" />
           <label class='btn' for='submit'>Submit</label>
           <p class='error' id='selectionError'></p>
         </form>
       `;
+
+  const rememberMeBox = document.getElementById('remember-me');
+
+  if (localStorage.getItem('rememberMe') === null) {
+    rememberMeBox.checked = false;
+    localStorage.setItem('rememberMe', 'false');
+  } else if (localStorage.getItem('rememberMe') === 'true') {
+    rememberMeBox.checked = true;
+  } else {
+    rememberMeBox.checked = false;
+  }
+
+  rememberMeBox.addEventListener('change', (event) => {
+    if (event.target.checked) {
+      localStorage.setItem('rememberMe', 'true');
+    } else {
+      localStorage.setItem('rememberMe', 'false');
+      localStorage.removeItem('name');
+      localStorage.removeItem('email');
+      localStorage.removeItem('mobile');
+      const nameField = document.getElementById('booking-name-field');
+      const mobileField = document.getElementById('booking-mobile-field');
+      const emailField = document.getElementById('booking-email-field');
+      nameField.value = '';
+      mobileField.value = '';
+      emailField.value = '';
+    }
+    setRememberMeLabel();
+  });
+
+  const rememberMeLabel = document.getElementById('remember-me-label');
+
+  function setRememberMeLabel() {
+    rememberMeLabel.innerHTML = rememberMeBox.checked
+      ? 'Forget me'
+      : 'Remember me';
+  }
+
+  setRememberMeLabel();
+
+  if (rememberMeBox.checked) {
+    const nameField = document.getElementById('booking-name-field');
+    const mobileField = document.getElementById('booking-mobile-field');
+    const emailField = document.getElementById('booking-email-field');
+    nameField.value = localStorage.getItem('name');
+    mobileField.value = localStorage.getItem('mobile');
+    emailField.value = localStorage.getItem('email');
+  }
 
   const bookingForm = document.getElementById('booking-form');
   bookingForm.addEventListener('submit', formValidate);
