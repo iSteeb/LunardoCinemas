@@ -16,11 +16,11 @@
 <div id='receipt'></div>
 <div id='tickets'></div>
   <script type=module>
-    import { initReceipt } from './receiptGenerator.js';
+    import { initHistory } from './historyGenerator.js';
     // import PHP stored booking data object and then render sections with it
-    var booking = <?php echo json_encode($_SESSION['Booking']) ?>;
+    var booking = <?php echo json_encode($_GET) ?>;
     var movies = <?php echo json_encode($moviesArray) ?>;
 
-    initReceipt(booking, movies);
+    initHistory(booking, movies);
   </script>
 <?php echo bottom_module(); ?>

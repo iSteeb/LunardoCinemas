@@ -394,3 +394,62 @@ function calcPrice() {
   if (total == 0) return '';
   else return `Total: $${Number(total).toFixed(2)}`;
 }
+
+export function initCurrentBookings(bookings) {
+  const currentBookingsContainer = document.getElementById(
+    'current-bookings-container'
+  );
+
+  if (bookings.length === 0) {
+    const bookingDiv = document.createElement('div');
+    bookingDiv.classList.add('booking');
+    bookingDiv.innerHTML = `
+        <p>Sorry, no bookings were found under those details.</p>
+      `;
+    currentBookingsContainer.appendChild(bookingDiv);
+  } else {
+    bookings.forEach((booking) => {
+      const bookingDiv = document.createElement('div');
+      const GET_data = {
+        'Order Date': booking[0],
+        Name: booking[1],
+        Email: booking[2],
+        Mobile: booking[3],
+        'Movie Code': booking[4],
+        'Day of Movie': booking[5],
+        'Time of Movie': booking[6],
+        '%23STA': booking[7],
+        $STA: booking[8],
+        '%23STP': booking[9],
+        $STP: booking[10],
+        '%23STC': booking[11],
+        $STC: booking[12],
+        '%23FCA': booking[13],
+        $FCA: booking[14],
+        '%23FCP': booking[15],
+        $FCP: booking[16],
+        '%23FCC': booking[17],
+        $FCC: booking[18],
+        Total: booking[19],
+        GST: booking[20]
+      };
+
+      bookingDiv.classList.add('booking-box');
+      bookingDiv.innerHTML = `
+          <p><b>Order Date:</b> ${GET_data['Order Date']}</p>
+          <p><b>Name:</b> ${GET_data['Name']}</p>
+          <p><b>Email:</b> ${GET_data['Email']}</p>
+          <p><b>Mobile:</b> ${GET_data['Mobile']}</p>
+          <p><b>Your Order</b><br></p>
+          <p><b>TOTAL (incl GST):</b> \$${GET_data['Total']}</p>
+          <p><b>GST:</b> \$${GET_data['GST']}</p>
+          <p><a href='history.php?${Object.keys(GET_data)
+            .map((key) => key + '=' + GET_data[key])
+            .join('&')}' target="_blank">
+            Get Tickets
+          </a></p>
+      `;
+      currentBookingsContainer.appendChild(bookingDiv);
+    });
+  }
+}

@@ -112,6 +112,32 @@ $pricesArray = [
                             ] 
                           ] 
   ];
+
+
+  // takes the location of the bookings file and searches for (and returns) matching bookings
+  function getCurrentBookings($filename) {
+    try {
+      $file = fopen($filename, 'r');
+    } catch(Exception $e) {
+      $_SESSION['error'] = $e;
+    }
+
+    if ($file) {
+      $results = [];
+      $all_bookings = explode("\n", fread($file, filesize($filename)));
+      foreach ($all_bookings as $bookingString) {
+        $booking = explode(",", $bookingString);
+        if (count($booking) > 1 && $booking[2] == $_GET['email'] && $booking[3] == $_GET['mobile']) {
+          $results[] = $booking;
+        }
+      }
+      return $results;
+    }
+
+    else return false;
+
+    fclose($file);
+  }
  
   function isDiscounted($session) {
   if (str_contains($session, 'MON')) return true;
@@ -171,6 +197,17 @@ $pricesArray = [
         <div id="footer-copyright">
           <p>&copy; <script>document.write(new Date().getFullYear());</script> Steven Duzevich (s3963525) | Last modified <?= date ("Y F d  H:i", filemtime(\$_SERVER["SCRIPT_FILENAME"])); ?> | <a href="//github.com/isteeb/wp" target="_blank">GitHub Repo</a></p>
           <p>Disclaimer: This website is not a real website and is being developed as part of a School of Science Web Programming course at RMIT University in Melbourne, Australia.</p>
+        </div>
+
+        <div id="footer-retrieve-booking">
+          <form action="currentbookings.php" method="get">
+
+            <input type='text' id='retrieve-email-field' name='email' value='' placeholder='email' required/>
+            <input type='text' id='retrieve-mobile-field' name='mobile' value='' placeholder='mobile' required />
+
+            <input id="retrieve-submit" class='btn' type='submit' value="submit" />
+            <label class='btn' for='retrieve-submit'>Retrieve Bookings</label>
+          </form>
         </div>
       </footer>
 

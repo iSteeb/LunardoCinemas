@@ -59,7 +59,7 @@
     try {
       $file = fopen('bookings.txt', 'a');
     } catch(Exception $e) {
-      $_SESSION['test'] = $e;
+      $_SESSION['error'] = $e;
     }
     fputcsv($file, $_SESSION['Booking']);
     fclose($file);
